@@ -61,15 +61,15 @@ const Hero = () => {
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Igor Fernando Casita.</h2>;
-  const three = <h3 className="big-heading">Junior Backend Software Developer.</h3>;
+  const three = <h3 className="big-heading">Junior Full-Stack Software Developer.</h3>;
   const four = (
     <>
       <p>
-        I’m a junior software developer focused on backend development and RESTful APIs.
+        I’m a junior software developer focused on full-stack development and RESTful APIs.
         I have hands-on experience building real-world systems using <strong>Java (Spring Boot)</strong>,
         <strong> Node.js</strong>, and <strong>Python</strong>, working with
         <strong> PostgreSQL</strong>, <strong>Docker</strong>, and well-documented APIs using
-        <strong> Swagger/OpenAPI</strong>.
+        <strong> Swagger/OpenAPI</strong>. And on frontend, I do build systems using <strong>React (DOM & Native)</strong>.
         <br /><br />
         Currently pursuing an interdisciplinary Bachelor’s degree in Science and Technology at
         <strong> UFABC</strong>, with a planned academic progression to Computer Science.
