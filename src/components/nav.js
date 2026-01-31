@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, useIntl, FormattedMessage, changeLocale } from 'gatsby-plugin-intl';
+import { withPrefix } from 'gatsby'; 
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css } from 'styled-components';
@@ -33,7 +34,7 @@ const StyledHeader = styled.header`
 
   @media (prefers-reduced-motion: no-preference) {
     ${props =>
-    props.scrollDirection === 'up' &&
+      props.scrollDirection === 'up' &&
       !props.scrolledToTop &&
       css`
         height: var(--nav-scroll-height);
@@ -43,7 +44,7 @@ const StyledHeader = styled.header`
       `};
 
     ${props =>
-    props.scrollDirection === 'down' &&
+      props.scrollDirection === 'down' &&
       !props.scrolledToTop &&
       css`
         height: var(--nav-scroll-height);
@@ -150,11 +151,73 @@ const StyledLinks = styled.div`
   }
 `;
 
+const DesktopLangSwitcher = styled.div`
+  margin-left: 20px;
+  font-size: var(--fz-xs);
+  display: flex;
+  gap: 10px;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    padding: 5px;
+    transition: var(--transition);
+
+    &:hover, &.active {
+      color: var(--green);
+    }
+  }
+`;
+
+// CORREÇÃO AQUI: largura fixa para não pular
+const MobileLangSwitcher = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 5px;
+    z-index: 10;
+    
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--lightest-slate);
+      font-family: var(--font-mono);
+      font-size: var(--fz-md);
+      padding: 10px 5px;
+      
+      /* Largura fixa evita o pulo quando fica negrito */
+      width: 40px; 
+      text-align: center;
+      
+      &.active {
+        color: var(--green);
+        font-weight: bold;
+      }
+    }
+    
+    span {
+      color: var(--lightest-slate);
+    }
+  }
+`;
+
 const Nav = ({ isHome }) => {
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection('down');
   const [scrolledToTop, setScrolledToTop] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const intl = useIntl();
 
   const handleScroll = () => {
     setScrolledToTop(window.pageYOffset < 50);
@@ -205,10 +268,32 @@ const Nav = ({ isHome }) => {
     </div>
   );
 
+  const resumeUrl = intl.locale === 'pt' 
+    ? withPrefix("/Igor Fernando C.F. Silva - CV (Português).pdf") 
+    : withPrefix("/Igor Fernando C.F. Silva - CV (English).pdf");
+
   const ResumeLink = (
-    <a className="resume-button" href="/Portfolio/Igor Fernando C.F. Silva - CV (English).pdf" target="_blank" rel="noopener noreferrer">
-      Resume
+    <a className="resume-button" href={resumeUrl} target="_blank" rel="noopener noreferrer">
+      <FormattedMessage id="resume_button" defaultMessage="Resume" />
     </a>
+  );
+
+  const LangButtons = (
+    <>
+      <button 
+        onClick={() => changeLocale('en')} 
+        className={intl.locale === 'en' ? 'active' : ''}
+      >
+        EN
+      </button>
+      <span>/</span>
+      <button 
+        onClick={() => changeLocale('pt')} 
+        className={intl.locale === 'pt' ? 'active' : ''}
+      >
+        PT
+      </button>
+    </>
   );
 
   return (
@@ -217,19 +302,21 @@ const Nav = ({ isHome }) => {
         {prefersReducedMotion ? (
           <>
             {Logo}
-
+            <MobileLangSwitcher>{LangButtons}</MobileLangSwitcher>
             <StyledLinks>
               <ol>
                 {navLinks &&
                   navLinks.map(({ url, name }, i) => (
                     <li key={i}>
-                      <Link to={url}>{name}</Link>
+                      <Link to={url}>
+                        <FormattedMessage id={name.toLowerCase()} defaultMessage={name} />
+                      </Link>
                     </li>
                   ))}
               </ol>
               <div>{ResumeLink}</div>
+              <DesktopLangSwitcher>{LangButtons}</DesktopLangSwitcher>
             </StyledLinks>
-
             <Menu />
           </>
         ) : (
@@ -242,6 +329,14 @@ const Nav = ({ isHome }) => {
               )}
             </TransitionGroup>
 
+            <TransitionGroup component={null}>
+               {isMounted && (
+                 <CSSTransition classNames={fadeClass} timeout={timeout}>
+                    <MobileLangSwitcher>{LangButtons}</MobileLangSwitcher>
+                 </CSSTransition>
+               )}
+            </TransitionGroup>
+
             <StyledLinks>
               <ol>
                 <TransitionGroup component={null}>
@@ -250,7 +345,9 @@ const Nav = ({ isHome }) => {
                     navLinks.map(({ url, name }, i) => (
                       <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
-                          <Link to={url}>{name}</Link>
+                          <Link to={url}>
+                             <FormattedMessage id={name.toLowerCase()} defaultMessage={name} />
+                          </Link>
                         </li>
                       </CSSTransition>
                     ))}
@@ -260,8 +357,9 @@ const Nav = ({ isHome }) => {
               <TransitionGroup component={null}>
                 {isMounted && (
                   <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                    <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
+                    <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms`, display: 'flex', alignItems: 'center' }}>
                       {ResumeLink}
+                      <DesktopLangSwitcher>{LangButtons}</DesktopLangSwitcher>
                     </div>
                   </CSSTransition>
                 )}

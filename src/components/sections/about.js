@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+// 1. Importar o componente de tradução
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
@@ -138,26 +140,28 @@ const About = () => {
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
-      <h2 className="numbered-heading">About Me</h2>
+      <h2 className="numbered-heading">
+        <FormattedMessage id="about_heading" defaultMessage="About Me" />
+      </h2>
 
       <div className="inner">
         <StyledText>
           <div>
             <p>
-              Hello! My name is Igor, and I’m a junior software developer with a strong focus on backend
-              development and building real-world systems. My interest in software development started back in 2019
-              when I decided to try creating games — after a few tutorials, I quickly realized that I enjoyed the problem-solving
-              aspect of programming much more than the actual game design. Since then, I have been passionate about learning
-              various programming languages and frameworks, particularly in backend technologies like Java (Spring Boot), Node.js, and Python.
+              <FormattedMessage id="about_p1" />
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working as a volunteer at{' '}
-              <a href="https://etects.cps.sp.gov.br/">an school of CPS</a>. My
-              main focus these days is learning microservices architecture and cloud computing platforms like AWS.
+              <FormattedMessage id="about_p2" />{' '}
+              <a href="https://etects.cps.sp.gov.br/">
+                <FormattedMessage id="about_p2_link" />
+              </a>.{' '}
+              <FormattedMessage id="about_p2_end" />
             </p>
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>
+              <FormattedMessage id="about_p3" />
+            </p>
           </div>
 
           <ul className="skills-list">

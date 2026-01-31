@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Layout } from '@components';
 import { IconBookmark } from '@components/icons';
+// 1. Importar o hook de internacionalização
+import { useIntl } from 'gatsby-plugin-intl';
 
 const StyledMainContainer = styled.main`
   & > header {
@@ -143,7 +145,14 @@ const StyledPost = styled.li`
 `;
 
 const PensievePage = ({ location, data }) => {
-  const posts = data.allMarkdownRemark.edges;
+  // 2. Inicializar o hook (CORREÇÃO FUNDAMENTAL)
+  const intl = useIntl();
+
+  const posts = data.allMarkdownRemark.edges.filter(edge => {
+     // Se no MD não tiver 'lang', assume que é inglês ('en') para não quebrar antigos
+     const lang = edge.node.frontmatter.lang || 'en'; 
+     return lang === intl.locale;
+  });
 
   return (
     <Layout location={location}>
@@ -223,6 +232,7 @@ export const pageQuery = graphql`
             date
             tags
             draft
+            lang
           }
           html
         }

@@ -1,5 +1,4 @@
 ---
-title: "Professional Certifications"
 certifications:
   - name: "Oracle Cloud Infrastructure 2024 Generative AI Professional"
     code: "1Z0-1127-24"

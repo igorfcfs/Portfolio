@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'gatsby';
+// Imports necessários
+import { Link, FormattedMessage, useIntl, changeLocale } from 'gatsby-plugin-intl';
+import { withPrefix } from 'gatsby';
 import styled from 'styled-components';
 import { navLinks } from '@config';
 import { KEY_CODES } from '@utils';
@@ -20,7 +22,8 @@ const StyledHamburgerButton = styled.button`
   @media (max-width: 768px) {
     ${({ theme }) => theme.mixins.flexCenter};
     position: relative;
-    z-index: 10;
+    /* 1. CORREÇÃO: Z-Index bem alto para ficar acima do Sidebar */
+    z-index: 20; 
     margin-right: -15px;
     padding: 15px;
     border: 0;
@@ -100,7 +103,8 @@ const StyledSidebar = styled.aside`
     outline: 0;
     background-color: var(--light-navy);
     box-shadow: -10px 0px 30px -15px var(--navy-shadow);
-    z-index: 9;
+    /* 2. CORREÇÃO: Z-Index 15 para cobrir o Header (que é 11) */
+    z-index: 15; 
     transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
     visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
     transition: var(--transition);
@@ -153,10 +157,38 @@ const StyledSidebar = styled.aside`
     margin: 10% auto 0;
     width: max-content;
   }
+  
+  /* 3. Estilo para os botões DENTRO do menu */
+  .sidebar-lang-switcher {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    
+    button {
+      background: none;
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      padding: 12px 20px; /* Botões grandes para toque */
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: var(--fz-md);
+      cursor: pointer;
+      
+      &.active {
+        background-color: var(--green-tint);
+        font-weight: bold;
+      }
+      
+      &:hover {
+        background-color: var(--green-tint);
+      }
+    }
+  }
 `;
 
 const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const intl = useIntl(); // Hook necessário
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -235,6 +267,10 @@ const Menu = () => {
   const wrapperRef = useRef();
   useOnClickOutside(wrapperRef, () => setMenuOpen(false));
 
+  const resumeUrl = intl.locale === 'pt' 
+              ? withPrefix("/Igor Fernando C.F. Silva - CV (Português).pdf") 
+              : withPrefix("/Igor Fernando C.F. Silva - CV (English).pdf");
+
   return (
     <StyledMenu>
       <Helmet>
@@ -259,15 +295,15 @@ const Menu = () => {
                 {navLinks.map(({ url, name }, i) => (
                   <li key={i}>
                     <Link to={url} onClick={() => setMenuOpen(false)}>
-                      {name}
+                      <FormattedMessage id={name.toLowerCase()} defaultMessage={name} />
                     </Link>
                   </li>
                 ))}
               </ol>
             )}
 
-            <a href="/Portfolio/Igor Fernando C.F. Silva - CV (English).pdf" className="resume-link">
-              Resume
+            <a href={resumeUrl} className="resume-link">
+              <FormattedMessage id="resume_button" defaultMessage="Resume" />
             </a>
           </nav>
         </StyledSidebar>

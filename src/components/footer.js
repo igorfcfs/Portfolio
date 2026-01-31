@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
 import { socialMedia } from '@config';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledFooter = styled.footer`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -106,7 +107,7 @@ const Footer = () => {
 
       <StyledCredit tabindex="-1">
         <a href="https://github.com/igorfcfs">
-          <div>Designed &amp; Built by Igor Fernando Casita</div>
+          <div><FormattedMessage id="footer_rights" defaultMessage="Designed &amp; Built by Igor Fernando Casita" /></div>
 
           {githubInfo.stars && githubInfo.forks && (
             <div className="github-stats">

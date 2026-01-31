@@ -6,6 +6,7 @@ import { srConfig } from '@config';
 import { KEY_CODES } from '@utils';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl'; // <--- Adicione useIntl
 
 const StyledJobsSection = styled.section`
   max-width: 700px;
@@ -179,6 +180,7 @@ const Jobs = () => {
               location
               range
               url
+              lang
             }
             html
           }
@@ -187,7 +189,14 @@ const Jobs = () => {
     }
   `);
 
-  const jobsData = data.jobs.edges;
+  const intl = useIntl(); // <--- Hook de internacionalização
+
+  // <--- LÓGICA DE FILTRAGEM
+  const jobsData = data.jobs.edges.filter(({ node }) => {
+    const lang = node.frontmatter.lang || 'en';
+    return lang === intl.locale;
+  });
+  // -----------------------
 
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
@@ -244,7 +253,9 @@ const Jobs = () => {
 
   return (
     <StyledJobsSection id="jobs" ref={revealContainer}>
-      <h2 className="numbered-heading">Professional Experience</h2>
+      <h2 className="numbered-heading">
+        <FormattedMessage id="experience_heading" defaultMessage="Professional Experience" />
+      </h2>
 
       <div className="inner">
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyDown(e)}>

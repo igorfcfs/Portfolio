@@ -6,6 +6,8 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+// 1. IMPORTAR useIntl
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 const StyledAcademicSection = styled.section`
   padding-top: 100px;
@@ -371,13 +373,9 @@ const AcademicFeatured = () => {
                 }
               }
               end(formatString: "YYYY")
-              cover {
-                childImageSharp {
-                  gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
-                }
-              }
               tech
               external
+              lang
             }
             html
           }
@@ -386,7 +384,15 @@ const AcademicFeatured = () => {
     }
   `);
 
-  const featuredDegrees = data.degrees.edges.filter(({ node }) => node);
+  // 2. USAR O HOOK
+  const intl = useIntl();
+
+  // 3. FILTRAR POR LÍNGUA
+  const featuredDegrees = data.degrees.edges.filter(({ node }) => {
+    const lang = node.frontmatter.lang || 'en';
+    return lang === intl.locale;
+  });
+
   const revealTitle = useRef(null);
   const revealDegrees = useRef([]);
   const containerRef = useRef(null);
@@ -428,7 +434,7 @@ const AcademicFeatured = () => {
   return (
     <StyledAcademicSection id="education">
       <h2 className="numbered-heading" ref={revealTitle}>
-        Academic Journey
+        <FormattedMessage id="academic_featured_heading" defaultMessage="Academic Journey" />
       </h2>
 
       <TimelineContainer ref={containerRef}>

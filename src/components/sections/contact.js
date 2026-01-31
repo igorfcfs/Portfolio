@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { srConfig, email } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+// 1. Importar o componente
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledContactSection = styled.section`
   max-width: 600px;
@@ -55,18 +57,20 @@ const Contact = () => {
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
-      <h2 className="numbered-heading overline">What’s Next?</h2>
+      <h2 className="numbered-heading overline">
+        <FormattedMessage id="contact_overline" defaultMessage="What’s Next?" />
+      </h2>
 
-      <h2 className="title">Get In Touch</h2>
+      <h2 className="title">
+        <FormattedMessage id="contact_title" defaultMessage="Get In Touch" />
+      </h2>
 
       <p>
-        I’m a Junior Full Stack Developer with hands-on experience building real-world web and mobile applications using React, Node.js, and Spring Boot.
-
-        I’m currently open to junior opportunities, internships, freelance projects, and technical collaborations. If you’re looking for someone who values clean code, solid architecture, and continuous learning, feel free to reach out — I’d be glad to connect.
+        <FormattedMessage id="contact_description" />
       </p>
 
       <a className="email-link" href={`mailto:${email}`}>
-        Say Hello
+        <FormattedMessage id="contact_button" defaultMessage="Say Hello" />
       </a>
     </StyledContactSection>
   );

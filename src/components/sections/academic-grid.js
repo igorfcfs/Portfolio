@@ -5,6 +5,7 @@ import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledCertSection = styled.section`
   max-width: 800px;
@@ -143,7 +144,6 @@ const AcademicGrid = () => {
         fileAbsolutePath: { regex: "/content/academic/certifications/index.md/" }
       ) {
         frontmatter {
-          title
           certifications {
             name
             code
@@ -156,7 +156,7 @@ const AcademicGrid = () => {
     }
   `);
 
-  const { title, certifications } = data.certifications.frontmatter;
+  const { certifications } = data.certifications.frontmatter;
   const revealTitle = useRef(null);
   const revealCerts = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -169,7 +169,7 @@ const AcademicGrid = () => {
 
   return (
     <StyledCertSection>
-      <h2 ref={revealTitle}>{title}</h2>
+      <h2 ref={revealTitle}><FormattedMessage id="academic_grid_heading" defaultMessage="Professional Certifications" /></h2>
 
       <StyledCertList>
         {certifications &&
