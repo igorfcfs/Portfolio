@@ -2,6 +2,7 @@
 date: '3'
 title: 'Nexus Evolution Academy'
 cover: './code.png'
+github: 'https://github.com/Nexus-Evolution-Tech/Nexus-Evolution-Academy'
 external: '#'
 cta: '#'
 tech:

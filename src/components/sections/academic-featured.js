@@ -217,6 +217,14 @@ const StyledDegree = styled.li`
     margin-bottom: 5px;
     display: block;
   }
+  
+  .degree-end {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--light-slate);
+    margin-bottom: 5px;
+    display: block;
+  }
 
   .degree-title {
     color: var(--lightest-slate);
@@ -362,6 +370,12 @@ const AcademicFeatured = () => {
                   gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
                 }
               }
+              end(formatString: "YYYY")
+              cover {
+                childImageSharp {
+                  gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+                }
+              }
               tech
               external
             }
@@ -425,14 +439,14 @@ const AcademicFeatured = () => {
           {featuredDegrees &&
             featuredDegrees.map(({ node }, i) => {
               const { frontmatter, html } = node;
-              const { external, title, tech, cover, school, date } = frontmatter;
+              const { external, title, tech, cover, school, date, end } = frontmatter;
               const image = getImage(cover);
 
               return (
                 <StyledDegree key={i} ref={el => (revealDegrees.current[i] = el)}>
                   <div className="degree-content">
                     <div>
-                      <span className="degree-date">{date}</span>
+                      <span className="degree-date">{date}-{end}</span>
                       <p className="degree-overline">{school}</p>
 
                       <h3 className="degree-title">
