@@ -6,6 +6,7 @@ import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledProjectsSection = styled.section`
   display: flex;
@@ -265,10 +266,10 @@ const Projects = () => {
 
   return (
     <StyledProjectsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
+      <h2 ref={revealTitle}><FormattedMessage id="projects_h2" defaultMessage="Other Noteworthy Projects" /></h2>
 
       <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
-        view the archive
+        <FormattedMessage id="projects_archive" defaultMessage="view the archive" />
       </Link>
 
       <ul className="projects-grid">
@@ -303,7 +304,7 @@ const Projects = () => {
       </ul>
 
       <button className="more-button" onClick={() => setShowMore(!showMore)}>
-        Show {showMore ? 'Less' : 'More'}
+        <FormattedMessage id="projects_show" defaultMessage="Show" /> {showMore ? <FormattedMessage id="projects_show_less" defaultMessage="Less" /> : <FormattedMessage id="projects_show_more" defaultMessage="More" />}
       </button>
     </StyledProjectsSection>
   );

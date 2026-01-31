@@ -11,7 +11,15 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, location }) => {
-  const isHome = location.pathname === '/';
+  const path = location.pathname;
+  const isHome = path === '/' ||                       // Local raiz
+                 path === '/en/' || path === '/en' ||  // Local Inglês
+                 path === '/pt/' || path === '/pt' ||  // Local Português
+                 path === '/Portfolio/' ||             // Prod raiz
+                 path === '/Portfolio/en/' ||          // Prod Inglês
+                 path === '/Portfolio/pt/' ||          // Prod Português
+                 path.includes('/Portfolio/en') ||     // Garantia extra
+                 path.includes('/Portfolio/pt');       // Garantia extra
   const [isLoading, setIsLoading] = useState(isHome);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 // --- STYLES ---
 
@@ -137,7 +138,6 @@ const AcademicCourses = () => {
     query {
       coursesData: markdownRemark(fileAbsolutePath: { regex: "/content/academic/courses/index.md/" }) {
         frontmatter {
-          title
           courses_list {
             year
             items {
@@ -151,7 +151,7 @@ const AcademicCourses = () => {
     }
   `);
 
-  const { title, courses_list } = data.coursesData.frontmatter;
+  const { courses_list } = data.coursesData.frontmatter;
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   
@@ -170,7 +170,7 @@ const AcademicCourses = () => {
 
   return (
     <StyledSection ref={revealContainer}>
-      <StyledHeader>{title}</StyledHeader>
+      <StyledHeader><FormattedMessage id="academic_courses_heading" defaultMessage="Relevant Coursework" /></StyledHeader>
 
       <StyledAccordion>
         {courses_list && courses_list.map((group, i) => {
