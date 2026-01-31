@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 96" width="512" height="512">
+    <g transform="translate(-8, -2)">
+        <g transform="translate(11, 5)">
+            <polygon
+                id="Shape"
+                stroke="none"
+                fill="#0a192f"
+                points="39 0 0 22 0 67 39 90 78 68 78 23"
+            />
+
+            <path
+                d="M20,28 H30 V68 H20 Z M36,28 H62 V36 H46 V44 H58 V52 H46 V68 H36 Z"
+                fill="#64ffda"
+            />
+        </g>
+    </g>
+</svg>

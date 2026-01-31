@@ -5,12 +5,17 @@ const IconLoader = () => (
     <title>Loader Logo</title>
     <g>
       <g id="B" transform="translate(11.000000, 5.000000)">
-        {/* LETRAS "IF" CENTRALIZADAS VISUALMENTE */}
+        {/* Símbolo de Código < /> no centro (Preenchido para o Loader) */}
         <path
-          d="M24,25 H34 V70 H24 Z M39,25 H62 V33 H49 V44 H59 V52 H49 V70 H39 Z"
-          fill="currentColor"
+          d="M26,35 L12,45 L26,55 M52,35 L66,45 L52,55 M35,62 L45,28"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
+      {/* Animação do Hexágono Externo */}
       <path
         stroke="currentColor"
         strokeWidth="5"

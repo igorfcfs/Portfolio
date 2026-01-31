@@ -5,6 +5,7 @@ const IconLogo = () => (
     <title>Logo</title>
     <g transform="translate(-8.000000, -2.000000)">
       <g transform="translate(11.000000, 5.000000)">
+        {/* Hexágono Externo */}
         <polygon
           id="Shape"
           stroke="currentColor"
@@ -13,10 +14,14 @@ const IconLogo = () => (
           strokeLinejoin="round"
           points="39 0 0 22 0 67 39 90 78 68 78 23"
         />
-        {/* LETRAS "IF" CENTRALIZADAS VISUALMENTE */}
+        {/* Símbolo de Código < /> no centro */}
         <path
-          d="M24,25 H34 V70 H24 Z M39,25 H62 V33 H49 V44 H59 V52 H49 V70 H39 Z"
-          fill="currentColor"
+          d="M26,35 L12,45 L26,55 M52,35 L66,45 L52,55 M35,62 L45,28"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </g>
