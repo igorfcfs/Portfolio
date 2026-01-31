@@ -1,5 +1,4 @@
 ---
-title: "Other Courses & Bootcamps"
 courses_list:
   - year: "2024"
     items:

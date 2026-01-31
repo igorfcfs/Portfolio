@@ -9,6 +9,7 @@ const _ = require('lodash');
 
 // --- CORREÇÃO DO ERRO DE DATA AQUI ---
 // Isso define explicitamente os tipos do Frontmatter para evitar erros de inferência
+// --- CORREÇÃO DO ERRO DE DATA E LANG AQUI ---
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
@@ -28,6 +29,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       tech: [String]
       showInProjects: Boolean
       cover: File @fileByRelativePath
+      
+      # ADICIONADOS AGORA:
+      lang: String
+      tags: [String]
+      description: String
+      draft: Boolean
     }
   `;
   createTypes(typeDefs);

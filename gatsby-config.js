@@ -1,15 +1,16 @@
 const config = require('./src/config');
 
 module.exports = {
-  pathPrefix: "/Portfolio",
+  pathPrefix: "/Portfolio", 
+  
   siteMetadata: {
     title: 'Igor Fernando Casita',
-    description:
-      'Igor Fernando Casita is a software engineer who specializes in building (and occasionally designing) exceptional digital experiences.',
-    siteUrl: 'https://brittanychiang.com', // No trailing slash allowed!
-    image: '/og.png', // Path to your image you placed in the 'static' folder
-    twitterUsername: '@bchiang7',
+    description: 'Igor Fernando Casita is a software engineer...',
+    siteUrl: 'https://igorfcfs.github.io/Portfolio',
+    image: '/og.png',
+    twitterUsername: '@igorfcfs',
   },
+  
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
@@ -18,19 +19,52 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    
+    // 1. INTERNACIONALIZAÇÃO
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `pt`],
+        defaultLanguage: `en`,
+        // ISSO AQUI FAZ A MÁGICA DA TROCA NO APP
+        redirect: true, 
+      },
+    },
+
+    // 2. MANIFESTO (O Ícone do App)
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Igor Fernando Casita',
-        short_name: 'Igor Fernando Casita',
-        start_url: '/',
+        // NOME CURTO OBRIGATÓRIO (Máx 12 chars para garantir o install)
+        short_name: 'Igor.Dev', 
+        
+        // COMEÇA NA RAIZ (Para o plugin de Intl decidir a língua)
+        start_url: '/', 
+        
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
-        display: 'minimal-ui',
+        display: 'standalone',
         icon: 'src/images/logo.png',
+        
+        // Força a atualização do ícone caso mude
+        cache_busting_mode: 'none',
+        
+        // IMPORTANTE: Diz pro navegador que esse redirect é intencional
+        include_favicon: false, 
       },
     },
-    `gatsby-plugin-offline`,
+
+    // 3. OFFLINE (Tem que ser o ÚLTIMO da lista de plugins funcionais)
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/en/*`, `/pt/*`], // Garante que as línguas funcionem offline
+      },
+    },
+
+    // ... Seus sources de imagem e markdown continuam iguais ...
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -64,7 +98,6 @@ module.exports = {
       options: {
         plugins: [
           {
-            // https://www.gatsbyjs.org/packages/gatsby-remark-external-links
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
@@ -72,7 +105,6 @@ module.exports = {
             },
           },
           {
-            // https://www.gatsbyjs.org/packages/gatsby-remark-images
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 700,
@@ -82,48 +114,16 @@ module.exports = {
             },
           },
           {
-            // https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/
             resolve: 'gatsby-remark-code-titles',
-          }, // IMPORTANT: this must be ahead of other plugins that use code blocks
+          }, 
           {
-            // https://www.gatsbyjs.org/packages/gatsby-remark-prismjs
             resolve: `gatsby-remark-prismjs`,
             options: {
-              // Class prefix for <pre> tags containing syntax highlighting;
-              // defaults to 'language-' (e.g. <pre class="language-js">).
-              // If your site loads Prism into the browser at runtime,
-              // (e.g. for use with libraries like react-live),
-              // you may use this to prevent Prism from re-processing syntax.
-              // This is an uncommon use-case though;
-              // If you're unsure, it's best to use the default value.
               classPrefix: 'language-',
-              // This is used to allow setting a language for inline code
-              // (i.e. single backticks) by creating a separator.
-              // This separator is a string and will do no white-space
-              // stripping.
-              // A suggested value for English speakers is the non-ascii
-              // character '›'.
               inlineCodeMarker: null,
-              // This lets you set up language aliases.  For example,
-              // setting this to '{ sh: "bash" }' will let you use
-              // the language "sh" which will highlight using the
-              // bash highlighter.
               aliases: {},
-              // This toggles the display of line numbers globally alongside the code.
-              // To use it, add the following line in gatsby-browser.js
-              // right after importing the prism color scheme:
-              //  require("prismjs/plugins/line-numbers/prism-line-numbers.css")
-              // Defaults to false.
-              // If you wish to only show line numbers on certain code blocks,
-              // leave false and use the {numberLines: true} syntax below
               showLineNumbers: false,
-              // If setting this to true, the parser won't handle and highlight inline
-              // code used in markdown i.e. single backtick code like `this`.
               noInlineHighlight: false,
-              // This adds a new language definition to Prism or extend an already
-              // existing language definition. More details on this option can be
-              // found under the header "Add new language definition or extend an
-              // existing language" below.
               languageExtensions: [
                 {
                   language: 'superscript',
@@ -138,8 +138,6 @@ module.exports = {
                   },
                 },
               ],
-              // Customize the prompt used in shell output
-              // Values below are default
               prompt: {
                 user: 'root',
                 host: 'localhost',

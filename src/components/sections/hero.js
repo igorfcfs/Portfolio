@@ -3,6 +3,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
+// 1. Importar o componente de tradução
+import { FormattedMessage } from 'gatsby-plugin-intl';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -59,20 +61,41 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Igor Fernando Casita.</h2>;
-  const three = <h3 className="big-heading">Junior Full-Stack Software Developer.</h3>;
+  // 2. Traduções simples
+  const one = (
+    <h1>
+      <FormattedMessage id="hero_greeting" defaultMessage="Hi, my name is" />
+    </h1>
+  );
+  const two = (
+    <h2 className="big-heading">
+      <FormattedMessage id="hero_name" defaultMessage="Igor Fernando Casita." />
+    </h2>
+  );
+  const three = (
+    <h3 className="big-heading">
+      <FormattedMessage id="hero_subtitle" defaultMessage="Junior Full-Stack Software Developer." />
+    </h3>
+  );
+
+  // 3. Tradução complexa com injeção de HTML (Negrito e quebra de linha)
   const four = (
     <>
       <p>
-        I’m a junior software developer focused on full-stack development and RESTful APIs.
-        I have hands-on experience building real-world systems using <strong>Java (Spring Boot)</strong>,
-        <strong> Node.js</strong>, and <strong>Python</strong>, working with
-        <strong> PostgreSQL</strong>, <strong>Docker</strong>, and well-documented APIs using
-        <strong> Swagger/OpenAPI</strong>. And on frontend, I do build systems using <strong>React (DOM & Native)</strong>.
-        <br /><br />
-        Currently pursuing an interdisciplinary Bachelor’s degree in Science and Technology at
-        <strong> UFABC</strong>, with a planned academic progression to Computer Science.
+        <FormattedMessage
+          id="hero_description"
+          values={{
+            java: <strong>Java (Spring Boot)</strong>,
+            node: <strong>Node.js</strong>,
+            python: <strong>Python</strong>,
+            postgres: <strong>PostgreSQL</strong>,
+            docker: <strong>Docker</strong>,
+            swagger: <strong>Swagger/OpenAPI</strong>,
+            react: <strong>React (DOM & Native)</strong>,
+            ufabc: <strong>UFABC</strong>,
+            br: <><br /></>, // Injeção da quebra de linha
+          }}
+        />
       </p>
     </>
   );

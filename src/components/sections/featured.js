@@ -6,6 +6,8 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
+// 1. Importar useIntl
+import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -323,6 +325,7 @@ const Featured = () => {
               github
               external
               cta
+              lang
             }
             html
           }
@@ -331,7 +334,15 @@ const Featured = () => {
     }
   `);
 
-  const featuredProjects = data.featured.edges.filter(({ node }) => node);
+  // 2. Hook de internacionalização
+  const intl = useIntl();
+
+  // 3. Filtro de linguagem
+  const featuredProjects = data.featured.edges.filter(({ node }) => {
+    const lang = node.frontmatter.lang || 'en';
+    return lang === intl.locale;
+  });
+
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -348,7 +359,7 @@ const Featured = () => {
   return (
     <section id="projects">
       <h2 className="numbered-heading" ref={revealTitle}>
-        Projects
+        <FormattedMessage id="projects_heading" defaultMessage="Projects" />
       </h2>
 
       <StyledProjectsGrid>
@@ -362,7 +373,9 @@ const Featured = () => {
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <div className="project-content">
                   <div>
-                    <p className="project-overline">Featured Project</p>
+                    <p className="project-overline">
+                        <FormattedMessage id="featured_overline" defaultMessage="Featured Project" />
+                    </p>
 
                     <h3 className="project-title">
                       <a href={external}>{title}</a>
@@ -384,7 +397,7 @@ const Featured = () => {
                     <div className="project-links">
                       {cta && (
                         <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
+                          <FormattedMessage id="featured_cta" defaultMessage="Learn more" />
                         </a>
                       )}
                       {github && (

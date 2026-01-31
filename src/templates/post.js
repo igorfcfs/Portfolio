@@ -51,6 +51,11 @@ const StyledPostContent = styled.div`
 `;
 
 const PostTemplate = ({ data, location }) => {
+  // 1. PROTEÇÃO: Se não houver dados, não renderiza nada (evita o crash)
+  if (!data || !data.markdownRemark) {
+    return null;
+  }
+
   const { frontmatter, html } = data.markdownRemark;
   const { title, date, tags } = frontmatter;
 
