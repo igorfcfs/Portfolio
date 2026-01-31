@@ -1,20 +1,23 @@
 ---
-date: '2028-01-01'
-title: 'B.S. in Computer Science'
+date: '2028-12-01'
+end: '2030-12-01'
+title: "Bachelor's Degree in Computer Science"
 school: 'Universidade Federal do ABC'
 cover: './ufabc.jpg'
 external: 'https://www.ufabc.edu.br/'
 tech:
-  - Data Structures
-  - Algorithms & Complexity
+  - Graph Theory
+  - Formal Languages & Automata
   - Operating Systems
   - Distributed Systems
-  - Compiler Construction
-  - Software Architecture
+  - Artificial Intelligence
+  - Computer Networks
+  - Quantum Computing (Optional)
 ---
 
-Core Computer Science curriculum focusing on the mathematical and theoretical foundations of computing.
+Rigorous "Post-BI" program following the Bachelor of Science & Technology (BC&T), emphasizing the mathematical foundations and advanced engineering of computing systems.
 
-- **Computer Science Fundamentals:** Deep dive into algorithmic complexity (Big O), memory management, concurrency, and thread safety in Java/C++.
-- **System Design:** Studied the architecture of scalable operating systems and distributed networks.
-- **Capstone Project:** Developed **"EcotrashV2"**, a full-stack mobile solution for waste management, applying concepts of Geolocation APIs and Cloud Database integration.
+- **Theoretical Core:** Mastered **Graph Theory**, **Formal Languages**, and **Automata Theory**, providing the tools to solve complex algorithmic problems and understand computability limits.
+- **Systems Engineering:** Deep dive into low-level computing with **Operating Systems**, Compilers, and Computer Architecture, focusing on concurrency, memory management, and process scheduling.
+- **Advanced Topics:** Explored cutting-edge fields through elective tracks in Artificial Intelligence, Machine Learning, and High-Performance Computing.
+- **Research Oriented:** Strong academic emphasis on scientific initiation and solving non-trivial computational problems.

@@ -1,20 +1,22 @@
 ---
 date: '2026-05-01'
-title: 'B.S. in Science & Technology'
+end: '2028-12-01'
+title: "Interdisciplinary Bachelor's Degree in Science & Technology"
 school: 'Universidade Federal do ABC'
 cover: './ufabc.jpg'
 external: 'https://www.ufabc.edu.br/'
 tech:
-  - Advanced Calculus
-  - Linear Algebra
-  - Analytical Geometry
-  - Physics
-  - Scientific Method
-  - Python for Data
+  - Multivariable Calculus
+  - Linear Algebra & Geometry
+  - Information Processing (Python)
+  - Quantum & Matter Physics
+  - Epistemology of Science
+  - Probability & Statistics
 ---
 
-A rigorous STEM foundation degree focused on interdisciplinary problem-solving. This program provided a deep mathematical and scientific background essential for complex software engineering.
+Innovative, broad-spectrum STEM degree that serves as the mandatory foundational cycle for advanced science majors. Renowned for its rigorous quarter-based system and interdisciplinary approach to problem-solving.
 
-- **Core Curriculum:** Mastered heavy quantitative subjects including Multivariable Calculus, Differential Equations, and Probability Statistics.
-- **Scientific Approach:** Developed strong analytical skills to approach technological problems using the scientific method and data analysis.
-- Served as the foundational track before specializing in Software Engineering.
+- **Quantitative Rigor:** Intense coursework in **Calculus (Single & Multivariable)**, Analytical Geometry, and Differential Equations, providing the mathematical modeling skills required for high-level computing.
+- **Computational Thinking:** Developed algorithmic problem-solving skills through "Information Processing," bridging the gap between mathematical theory and code implementation.
+- **Natural Sciences:** Integrated study of **Structure of Matter**, Quantum Mechanics concepts, and Thermodynamics, fostering a deep understanding of physical phenomena.
+- **Critical Analysis:** Unique focus on **Science, Technology, and Society (STS)** and Epistemology, training the ability to analyze the social and ethical impact of technological innovation.

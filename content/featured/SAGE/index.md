@@ -2,8 +2,8 @@
 date: '1'
 title: 'SAGE - Shool Automation and Management System'
 cover: './SAGE.jpeg'
-github: '#'
-external: '#'
+github: 'https://github.com/Nexus-Evolution-Tech/SAGE-API'
+external: 'https://github.com/Nexus-Evolution-Tech/SAGE'
 tech:
   - Node.js
   - Express

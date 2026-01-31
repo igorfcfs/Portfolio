@@ -2,8 +2,8 @@
 date: '2'
 title: 'ECOTECH – Smart E-Waste Recycling System'
 cover: './ecotech.png'
-github: 'https://github.com/igorfcfs/ecotech'
-external: '#'
+github: 'https://github.com/igorfcfs/EcoTechAPI'
+external: 'https://github.com/igorfcfs/EcoTech'
 tech:
   - React Native
   - Node.js
