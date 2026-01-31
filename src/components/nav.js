@@ -206,7 +206,7 @@ const Nav = ({ isHome }) => {
   );
 
   const ResumeLink = (
-    <a className="resume-button" href="/Igor Fernando C.F. Silva - CV (English).pdf" target="_blank" rel="noopener noreferrer">
+    <a className="resume-button" href="/Portfolio/Igor Fernando C.F. Silva - CV (English).pdf" target="_blank" rel="noopener noreferrer">
       Resume
     </a>
   );

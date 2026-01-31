@@ -266,7 +266,7 @@ const Menu = () => {
               </ol>
             )}
 
-            <a href="/Igor Fernando C.F. Silva - CV (English).pdf" className="resume-link">
+            <a href="/Portfolio/Igor Fernando C.F. Silva - CV (English).pdf" className="resume-link">
               Resume
             </a>
           </nav>
