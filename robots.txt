@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://nexusevotech.com/sitemap.xml
-Host: https://nexusevotech.com
+Sitemap: https://igorfcfs.github.io/sitemap.xml
+Host: https://igorfcfs.github.io
