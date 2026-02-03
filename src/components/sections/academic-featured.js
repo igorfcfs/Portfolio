@@ -6,8 +6,13 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
-// 1. IMPORTAR useIntl
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+
+// --- FUNÇÃO DNA REALISTA (Mesma de antes) ---
+const getRealisticDna = (color) => {
+  const c = color.replace('#', '%23');
+  return `url("data:image/svg+xml,%3Csvg width='40' height='120' viewBox='0 0 40 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E.back%7Bstroke:${c};stroke-width:1.5;opacity:0.3;fill:none%7D.front%7Bstroke:${c};stroke-width:2.5;fill:none%7D.rung%7Bstroke:${c};stroke-width:1;opacity:0.6%7D.dot%7Bfill:${c}%7D%3C/style%3E%3C/defs%3E%3Cpath class='back' d='M30,0 C30,30 10,30 10,60 S30,90 30,120' /%3E%3Cline class='rung' x1='12' y1='10' x2='28' y2='10' /%3E%3Cline class='rung' x1='10' y1='20' x2='30' y2='20' /%3E%3Cline class='rung' x1='10' y1='30' x2='30' y2='30' /%3E%3Cline class='rung' x1='10' y1='40' x2='30' y2='40' /%3E%3Cline class='rung' x1='12' y1='50' x2='28' y2='50' /%3E%3Cline class='rung' x1='12' y1='70' x2='28' y2='70' /%3E%3Cline class='rung' x1='10' y1='80' x2='30' y2='80' /%3E%3Cline class='rung' x1='10' y1='90' x2='30' y2='90' /%3E%3Cline class='rung' x1='10' y1='100' x2='30' y2='100' /%3E%3Cline class='rung' x1='12' y1='110' x2='28' y2='110' /%3E%3Cpath class='front' d='M10,0 C10,30 30,30 30,60 S10,90 10,120' /%3E%3Ccircle class='dot' cx='10' cy='0' r='1.5'/%3E%3Ccircle class='dot' cx='30' cy='60' r='1.5'/%3E%3Ccircle class='dot' cx='10' cy='120' r='1.5'/%3E%3C/svg%3E")`;
+};
 
 const StyledAcademicSection = styled.section`
   padding-top: 100px;
@@ -20,44 +25,64 @@ const StyledAcademicSection = styled.section`
   }
 `;
 
-// Container principal que segura a linha e os itens
 const TimelineContainer = styled.div`
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
 `;
 
-// A Linha Cinza (Fundo)
+// --- CORREÇÃO AQUI: Posicionamento da Linha ---
 const LineBase = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 2px;
-  background-color: var(--lightest-navy);
-  transform: translateX(-50%);
+  width: 40px; 
   z-index: 0;
+  
+  /* DESKTOP: Centralizado */
+  left: 50%;
+  transform: translateX(-50%);
 
+  background-image: ${props => getRealisticDna('#495670')};
+  background-repeat: repeat-y;
+  background-position: center top;
+  opacity: 0.4;
+
+  /* MOBILE: Encostado na Esquerda */
   @media (max-width: 768px) {
-    left: 20px;
+    left: 10px; /* Pequena margem da borda da tela */
+    transform: none; /* <--- IMPORTANTE: Remove a centralização */
   }
 `;
 
-// A Linha Verde (Preenchimento Dinâmico)
 const LineProgress = styled.div`
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 2px;
-  background-color: var(--green);
-  transform: translateX(-50%);
+  width: 40px;
   z-index: 1;
-  height: 0; 
+  height: 0;
   transition: height 0.1s linear;
-  box-shadow: 0 0 10px var(--green);
+  overflow: hidden;
 
+  /* DESKTOP: Centralizado */
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 10000px; 
+    background-image: ${props => getRealisticDna('#64ffda')};
+    background-repeat: repeat-y;
+    background-position: center top;
+    filter: drop-shadow(0 0 2px rgba(100, 255, 218, 0.4)); 
+  }
+
+  /* MOBILE: Encostado na Esquerda */
   @media (max-width: 768px) {
-    left: 20px;
+    left: 10px; /* Mesma posição do Base */
+    transform: none;
   }
 `;
 
@@ -72,29 +97,34 @@ const StyledDegree = styled.li`
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(12, 1fr);
-  align-items: center; 
-  margin-bottom: 100px;
+  align-items: center;
+  margin-bottom: 120px;
 
   &:last-child {
     margin-bottom: 0;
   }
 
+  /* --- PONTO (Bolinha) --- */
   &::after {
     content: '';
     position: absolute;
     top: 20px;
-    left: 50%;
-    width: 16px;
+    width: 16px; 
     height: 16px;
     border-radius: 50%;
-    background-color: var(--navy);
-    border: 3px solid var(--green);
-    transform: translateX(-50%);
+    background-color: var(--navy); 
+    border: 2px solid var(--green);
+    box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.1), 0 0 10px rgba(100, 255, 218, 0.3);
     z-index: 10;
     transition: var(--transition);
+    
+    /* DESKTOP: Centralizado */
+    left: 50%;
+    transform: translateX(-50%);
 
+    /* MOBILE: Alinhado com o DNA na esquerda */
     @media (max-width: 768px) {
-      left: 20px;
+      left: 30px; /* 10px (margem) + 20px (metade do DNA) = 30px centro */
     }
   }
 
@@ -102,48 +132,48 @@ const StyledDegree = styled.li`
     content: '';
     position: absolute;
     top: 28px;
-    height: 2px;
-    width: 6%;
-    background-color: var(--lightest-slate);
-    opacity: 0.2;
+    height: 1px;
+    width: 8%;
+    background-color: var(--green);
+    opacity: 0.3;
     z-index: 0;
 
     @media (max-width: 1080px) {
-      width: 4%;
+      width: 5%;
     }
     @media (max-width: 768px) {
       display: none;
     }
   }
 
-  /* --- ÍMPARES (Texto na Direita, Imagem na Esquerda) --- */
+  /* ÍMPARES (Texto esquerda no Desktop) */
   &:nth-of-type(odd) {
     &::before {
       left: 50%;
+      margin-left: 10px;
     }
 
     .degree-content {
       grid-column: 7 / -1;
       text-align: left;
-      padding-left: 40px;
+      padding-left: 60px;
 
       @media (max-width: 1080px) {
         grid-column: 6 / -1;
       }
+      
+      /* MOBILE ADJUST */
       @media (max-width: 768px) {
         grid-column: 1 / -1;
-        padding-left: 50px;
+        padding-left: 70px; /* Empurra o texto para não bater no DNA */
+        text-align: left;
       }
     }
     
     .degree-image {
-      /* --- CORREÇÃO AQUI --- */
-      /* Antes estava 1 / 6 (5 colunas). Agora está 1 / 7 (6 colunas) */
-      /* Isso iguala o tamanho com a imagem da direita */
-      grid-column: 1 / 7; 
-      
+      grid-column: 1 / 7;
       text-align: right;
-      padding-right: 20px; /* Pequeno respiro da linha central */
+      padding-right: 40px;
 
       @media (max-width: 768px) {
         display: none;
@@ -155,34 +185,35 @@ const StyledDegree = styled.li`
     }
   }
 
-  /* --- PARES (Texto na Esquerda, Imagem na Direita) --- */
+  /* PARES (Texto direita no Desktop) */
   &:nth-of-type(even) {
     &::before {
       right: 50%;
+      margin-right: 10px;
     }
 
     .degree-content {
       grid-column: 1 / 7;
       text-align: right;
-      padding-right: 40px;
+      padding-right: 60px;
 
       @media (max-width: 1080px) {
         grid-column: 1 / 7;
       }
+      
+      /* MOBILE ADJUST */
       @media (max-width: 768px) {
         grid-column: 1 / -1;
-        padding-left: 50px;
+        padding-left: 70px; /* Empurra o texto para não bater no DNA */
         text-align: left;
         padding-right: 0;
       }
     }
     
     .degree-image {
-      /* Aqui já estava 7 / -1 (6 colunas). Mantemos igual. */
       grid-column: 7 / -1;
-      
       text-align: left;
-      padding-left: 20px; /* Pequeno respiro da linha central */
+      padding-left: 40px;
 
       @media (max-width: 768px) {
         display: none;
@@ -196,8 +227,6 @@ const StyledDegree = styled.li`
       }
     }
   }
-
-  /* --- Conteúdo Interno --- */
 
   .degree-content {
     position: relative;
@@ -220,14 +249,6 @@ const StyledDegree = styled.li`
     display: block;
   }
   
-  .degree-end {
-    font-family: var(--font-mono);
-    font-size: var(--fz-xs);
-    color: var(--light-slate);
-    margin-bottom: 5px;
-    display: block;
-  }
-
   .degree-title {
     color: var(--lightest-slate);
     font-size: clamp(24px, 5vw, 28px);
@@ -384,10 +405,8 @@ const AcademicFeatured = () => {
     }
   `);
 
-  // 2. USAR O HOOK
   const intl = useIntl();
 
-  // 3. FILTRAR POR LÍNGUA
   const featuredDegrees = data.degrees.edges.filter(({ node }) => {
     const lang = node.frontmatter.lang || 'en';
     return lang === intl.locale;
