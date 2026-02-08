@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-c8d04273e49e47c689c3.js"
+    "url": "webpack-runtime-c1b96131bffde4cf1eca.js"
   },
   {
     "url": "framework-249d733f289d0429e609.js"
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "22143b688f10a72d382d70c98d93ed30"
+    "revision": "22154704feef72933fb21338abfbbb59"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-9a5d1562692cb053f3c3.js"
@@ -48,14 +48,97 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "d71f8ddac3d5ccc99a0c0c24ad2e4998"
+    "revision": "3633c6aef2a55601f3099d12234e0e71"
   },
   {
     "url": "polyfill-1bb1d5bc2a1b3b1c1ed4.js"
   },
   {
+    "url": "546641dfde76ed00139ea2c3eae09499c5f2164a-9e3544e20c90e7a993fd.js"
+  },
+  {
+    "url": "component---src-pages-404-js-8a5ed316b77dd3c4be8a.js"
+  },
+  {
+    "url": "page-data/en/404/page-data.json",
+    "revision": "59a316eabaa1c59134d32280d50d07cc"
+  },
+  {
+    "url": "page-data/sq/d/1127135046.json",
+    "revision": "2506a3a4689f0ac6e892b10975543447"
+  },
+  {
+    "url": "page-data/sq/d/1921109229.json",
+    "revision": "1d3cd98338558e7f4803c680722305be"
+  },
+  {
+    "url": "page-data/sq/d/1994492073.json",
+    "revision": "934957b4c39aa60521eebc4c84d0671c"
+  },
+  {
+    "url": "page-data/sq/d/2596216473.json",
+    "revision": "02514eca5a96ee9d8119a8c0c6075bbd"
+  },
+  {
+    "url": "page-data/sq/d/3208555609.json",
+    "revision": "c284503a8513d5546cc4bec617d6b7d8"
+  },
+  {
+    "url": "page-data/sq/d/3825832676.json",
+    "revision": "f7a4463258ee8d201699931c3b24f8ab"
+  },
+  {
+    "url": "page-data/sq/d/3933733069.json",
+    "revision": "5896fdadab2f02c699e19b1464ee626c"
+  },
+  {
+    "url": "component---src-pages-archive-js-146344ad218372cfd755.js"
+  },
+  {
+    "url": "page-data/en/archive/page-data.json",
+    "revision": "c014810387d1bde042c3548eb3099fae"
+  },
+  {
+    "url": "component---src-pages-index-js-1b9a4ec0717822e081f5.js"
+  },
+  {
+    "url": "page-data/en/page-data.json",
+    "revision": "ca4272cb0096b8a97fe2993e24063f70"
+  },
+  {
+    "url": "page-data/en/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "96b22525aefc0dbd3f748e896ed11c4e"
+  },
+  {
+    "url": "component---src-pages-pensieve-index-js-bb280f22b74bb88a04fa.js"
+  },
+  {
+    "url": "page-data/en/pensieve/page-data.json",
+    "revision": "5bbdf9fb60d0f677546a3a1bc2d20e96"
+  },
+  {
+    "url": "page-data/pt/404/page-data.json",
+    "revision": "0f0859c86d58c3a06b35a3fbe9d45a4b"
+  },
+  {
+    "url": "page-data/pt/archive/page-data.json",
+    "revision": "a9f32d4c4764065590df04e6b152b4fd"
+  },
+  {
+    "url": "page-data/pt/page-data.json",
+    "revision": "e0f5a900a77333384bc6d3def609e746"
+  },
+  {
+    "url": "page-data/pt/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "3807094e18d79d965f24d9ca52a6f917"
+  },
+  {
+    "url": "page-data/pt/pensieve/page-data.json",
+    "revision": "1548d47410e4260a75e9512b2ce63e55"
+  },
+  {
     "url": "manifest.webmanifest",
-    "revision": "89417df8e49fce404915fd92fb7774d7"
+    "revision": "0592274b12dc5bd3f1dfc92f8a2287c9"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -147,7 +230,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/Portfolio/app-d5d34e21c880342c054d.js`))) {
+  if (!resources || !(await caches.match(`/Portfolio/app-d3e5d0b4d74e21cd8281.js`))) {
     return await fetch(event.request)
   }
 
