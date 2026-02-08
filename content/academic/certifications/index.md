@@ -1,32 +1,38 @@
 ---
 certifications:
+  - name: "CS50's Introduction to Computer Science"
+    code: "3d350461-b8d2-431b-85b3-2ce1ae1b2305"
+    year: "2026"
+    provider: "Harvard University"
+    url: "https://certificates.cs50.io/3d350461-b8d2-431b-85b3-2ce1ae1b2305.pdf?size=letter"
+
   - name: "Oracle Cloud Infrastructure 2024 Generative AI Professional"
     code: "1Z0-1127-24"
     year: "2024"
     provider: "Oracle"
-    url: "https://catalog-education.oracle.com/pls/pexsp/f?p=1000:1120:0::::P1120_EXAM_ID:1Z0-1127-24"
+    url: "https://brm-certview.oracle.com/ords/certview/ecertificate?ssn=OC4653234&trackId=OCI2024GAIOCP&key=dbdc88b0d014d8148603462f19cb062722da46d8"
   
   - name: "Oracle Cloud Infrastructure 2023 AI Foundations Associate"
     code: "1Z0-1122-23"
     year: "2024"
     provider: "Oracle"
-    url: "https://education.oracle.com/oracle-cloud-infrastructure-2023-ai-foundations-associate/pexam_1Z0-1122-23"
+    url: "https://brm-certview.oracle.com/ords/certview/ecertificate?ssn=OC4653234&trackId=OCI23AIFCA&key=4de17d8d063459d96ed4a9a5dbd0c79316b6f532"
 
   - name: "Java SE 8 Programmer I (OCA)"
     code: "1Z0-808"
     year: "2023"
     provider: "Oracle"
-    url: "https://education.oracle.com/java-se-8-programmer-i/pexam_1Z0-808"
+    url: "https://brm-certview.oracle.com/ords/certview/ecertificate?ssn=OC4653234&trackId=OCAJSE8&key=0f0221e5942d00944a917a831695d9c12ee2adf1"
 
   - name: "Certified Associate in Python Programming (PCAP)"
     code: "PCAP-31-03"
     year: "2022"
     provider: "Python Institute"
-    url: "https://pythoninstitute.org/pcap"
+    url: "https://www.credly.com/badges/87b47645-d68b-47cb-93a9-dd9e5bb15b68/linked_in?t=rt5w33"
 
   - name: "English – Cambridge First (FCE) B2"
     code: "Score 167"
     year: "2022"
     provider: "Cambridge English"
-    url: "https://www.cambridgeenglish.org/exams-and-tests/first/"
+    url: "https://media.licdn.com/dms/image/v2/D4D2DAQFRCxVrfXTt8Q/profile-treasury-document-images_1920/B4DZuQ0ZLRHwAs-/1/1767661213770?e=1771459200&v=beta&t=IaFGbQkI-BS-CcAWLXbr1DQQ6l9ivlhvyEsBsRPdCuU"
 ---

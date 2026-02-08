@@ -4,6 +4,7 @@ title: 'SAGE - Sistema de Gestão e Automação Escolar'
 cover: './SAGE.jpeg'
 github: 'https://github.com/Nexus-Evolution-Tech/SAGE-API'
 external: 'https://github.com/Nexus-Evolution-Tech/SAGE'
+cta: 'https://www.linkedin.com/posts/igor-fernando-casita_v%C3%ADdeo-pitch-sage-etec-de-tabo%C3%A3o-da-serra-activity-7414117809028333568-fABj?utm_source=share&utm_medium=member_desktop&rcm=ACoAADZ4gjIBMGqOEJwo1Po4c2BZ27ajfmptQfk'
 tech:
   - Node.js
   - Express
