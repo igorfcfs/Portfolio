@@ -34,6 +34,19 @@ module.exports = {
 
     // 2. MANIFESTO (O Ícone do App)
     {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        // Caminho para a pasta que criamos
+        path: `${__dirname}/src/intl`,
+        // As línguas que você vai suportar
+        languages: [`en`, `pt`],
+        // A língua padrão
+        defaultLanguage: `en`,
+        // Redireciona / para /en automaticamente
+        redirect: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Igor Fernando Casita',
