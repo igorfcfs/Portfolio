@@ -6,6 +6,7 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 // 1. Importar o componente de tradução
 import { FormattedMessage } from 'gatsby-plugin-intl';
+import Skills from './skills';
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
@@ -182,6 +183,8 @@ const About = () => {
           </div>
         </StyledPic>
       </div>
+
+      <Skills />
     </StyledAboutSection>
   );
 };
