@@ -13,6 +13,7 @@ export { default as Jobs } from './sections/jobs';
 export { default as Degress } from './sections/academic-featured';
 export { default as Certifications } from './sections/academic-grid';
 export { default as Courses } from './sections/academic-courses';
+export { default as Languages } from './sections/languages';
 export { default as Featured } from './sections/featured';
 export { default as Projects } from './sections/projects';
 export { default as Contact } from './sections/contact';
