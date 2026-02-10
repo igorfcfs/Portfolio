@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
 import { GlobalStyle, theme } from '@styles';
+import InteractiveBackground from './sections/interactive-background';
 
 const StyledContent = styled.div`
   display: flex;
@@ -57,6 +58,8 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <Head />
+
+      <InteractiveBackground />
 
       <div id="root">
         <ThemeProvider theme={theme}>
