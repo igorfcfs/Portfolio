@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-a23cbebfeaaea4bedd1f.js"
+    "url": "webpack-runtime-e6831682415e2fc53da9.js"
   },
   {
     "url": "framework-249d733f289d0429e609.js"
@@ -37,39 +37,45 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "b9200b64a58e04265da43bc807764336"
+    "revision": "9beace5a599aacc909221b71672e6ff1"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-9a5d1562692cb053f3c3.js"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "97bbbd4f17415d2a32d221f1e5ca0c4d"
+    "revision": "bdd32bfbedcd1e82d8c3816516a53d2b"
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "854a770a2ce584d85fcc6a8a7cd41f76"
+    "revision": "fc4fec6a228a4c867b36fc0a5b5383e3"
   },
   {
     "url": "polyfill-1bb1d5bc2a1b3b1c1ed4.js"
   },
   {
-    "url": "546641dfde76ed00139ea2c3eae09499c5f2164a-e10043cd0a16bd49bb93.js"
+    "url": "d9067523-bc2e2120bc5afd67012e.js"
   },
   {
-    "url": "component---src-pages-404-js-8a5ed316b77dd3c4be8a.js"
+    "url": "cb355538-178bc024ee0354330138.js"
+  },
+  {
+    "url": "546641dfde76ed00139ea2c3eae09499c5f2164a-9c60aa38911fb53ee7f2.js"
+  },
+  {
+    "url": "component---src-pages-404-js-8edb19dd75b2ebef2628.js"
   },
   {
     "url": "page-data/en/404/page-data.json",
-    "revision": "59a316eabaa1c59134d32280d50d07cc"
+    "revision": "9d56957546e563bc4c11155732faa238"
   },
   {
     "url": "page-data/sq/d/1127135046.json",
-    "revision": "a03f6969d2bb50698e98f40e1488685c"
+    "revision": "14695ad3684f6c88ab4c7a2edeb32d64"
   },
   {
     "url": "page-data/sq/d/1921109229.json",
-    "revision": "95277c521e8e1eeb4938116f13c86f71"
+    "revision": "ba9b900ad164426baabed3f27fcb2741"
   },
   {
     "url": "page-data/sq/d/1994492073.json",
@@ -85,60 +91,60 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3825832676.json",
-    "revision": "f7a4463258ee8d201699931c3b24f8ab"
+    "revision": "0977d3b7d9f6075f2926e785d873c570"
   },
   {
     "url": "page-data/sq/d/3933733069.json",
     "revision": "2bb38d78c2d24f9cb9d440f05e7e2435"
   },
   {
-    "url": "component---src-pages-archive-js-146344ad218372cfd755.js"
+    "url": "component---src-pages-archive-js-ab6fc295fd53d1c80875.js"
   },
   {
     "url": "page-data/en/archive/page-data.json",
-    "revision": "c014810387d1bde042c3548eb3099fae"
+    "revision": "93fdf1dd1f6749e2f6e43623cb9834f9"
   },
   {
-    "url": "component---src-pages-index-js-1b9a4ec0717822e081f5.js"
+    "url": "component---src-pages-index-js-cc48a2e0b5889cca5e1f.js"
   },
   {
     "url": "page-data/en/page-data.json",
-    "revision": "ca4272cb0096b8a97fe2993e24063f70"
+    "revision": "bde216f6867036f1d7088526fa5126b5"
   },
   {
     "url": "page-data/en/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "96b22525aefc0dbd3f748e896ed11c4e"
+    "revision": "a3f3b4b3521e66389b9a8d55f526d7b5"
   },
   {
-    "url": "component---src-pages-pensieve-index-js-bb280f22b74bb88a04fa.js"
+    "url": "component---src-pages-pensieve-index-js-2561cb98ec0f600f428f.js"
   },
   {
     "url": "page-data/en/pensieve/page-data.json",
-    "revision": "1d2e85e81e36a1a99cf17b7c5fdc2f1c"
+    "revision": "34d20d9c4a999de30b2025122677b488"
   },
   {
     "url": "page-data/pt/404/page-data.json",
-    "revision": "0f0859c86d58c3a06b35a3fbe9d45a4b"
+    "revision": "d66220313c85f3af16903e3482138798"
   },
   {
     "url": "page-data/pt/archive/page-data.json",
-    "revision": "a9f32d4c4764065590df04e6b152b4fd"
+    "revision": "ef3c44dbf385c3c031438b7857966d54"
   },
   {
     "url": "page-data/pt/page-data.json",
-    "revision": "e0f5a900a77333384bc6d3def609e746"
+    "revision": "cb4e1ca052ae0dc825b0d269107515bd"
   },
   {
     "url": "page-data/pt/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "3807094e18d79d965f24d9ca52a6f917"
+    "revision": "af9ae9879f22310e95a0cb9d23569df8"
   },
   {
     "url": "page-data/pt/pensieve/page-data.json",
-    "revision": "70af39651373c52c8e7686c0d5e9c454"
+    "revision": "b71227a7a956e123efbd793ea8985beb"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "0592274b12dc5bd3f1dfc92f8a2287c9"
+    "revision": "8d09907b16d50cacf646ce9ffb974fa5"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -230,7 +236,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/Portfolio/app-588fa16bc8ac38b78952.js`))) {
+  if (!resources || !(await caches.match(`/Portfolio/app-9d0a3f8353c544bb7f9e.js`))) {
     return await fetch(event.request)
   }
 
