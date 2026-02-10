@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     width: 100%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   *,
