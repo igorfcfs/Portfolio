@@ -3,16 +3,20 @@ module.exports = {
 
   socialMedia: [
     {
+      name: 'Linkedin',
+      url: 'https://www.linkedin.com/in/igor-fernando-casita/',
+    },
+    {
+      name: 'Lattes',
+      url: 'https://lattes.cnpq.br/1338256166847172',
+    },
+    {
       name: 'GitHub',
       url: 'https://github.com/igorfcfs',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/igorcasita/',
-    },
-    {
-      name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/igor-fernando-casita/',
     },
   ],
 

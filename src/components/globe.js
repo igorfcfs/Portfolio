@@ -21,7 +21,8 @@ const CanvasContainer = styled.div`
   width: 100%;
   height: 600px;
   position: relative;
-  background: transparent;
+  // background: transparent;
+  background: var(--navy);
   cursor: grab;
   touch-action: none;
 

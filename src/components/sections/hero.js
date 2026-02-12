@@ -86,7 +86,7 @@ const Hero = () => {
           id="hero_description"
           values={{
             java: <strong>Java (Spring Boot)</strong>,
-            node: <strong>Node.js (Express)</strong>,
+            node: <strong>JavaScript/TypeScript (Node.js + Express)</strong>,
             python: <strong>Python (Django)</strong>,
             postgres: <strong>PostgreSQL</strong>,
             docker: <strong>Docker</strong>,

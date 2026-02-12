@@ -9,6 +9,7 @@ tech:
   - React Native
   - Node.js
   - Express
+  - TypeScript
   - Firebase
   - IoT
   - Geolocalização
