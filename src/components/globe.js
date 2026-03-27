@@ -74,7 +74,7 @@ const ActionButton = styled.button`
 
 const MARKERS = [
   { id: 'usp', name: 'USP', coords: [-46.730, -23.560] },
-  { id: 'ufabc', name: 'UFABC', coords: [-46.528, -23.645] },
+  { id: 'ita', name: 'ITA', coords: [-45.8746, -23.2126] },
   { id: 'harvard', name: 'Harvard', coords: [-71.110, 42.374] },
 ];
 

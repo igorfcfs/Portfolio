@@ -9,7 +9,7 @@
   "hero_greeting": "Hi, my name is",
   "hero_name": "Igor Fernando Casita.",
   "hero_subtitle": "Junior Full-Stack Software Developer.",
-  "hero_description": "I’m a junior software developer focused on full-stack development and RESTful APIs. I have hands-on experience building real-world systems using {java}, {node}, and {python}, working with {postgres}, {docker}, and well-documented APIs using {swagger}. And on frontend, I do build systems using {react}.{br}{br}Currently pursuing an interdisciplinary Bachelor’s degree in Science and Technology at {ufabc}, with a planned academic progression to Computer Science.",
+  "hero_description": "I’m a junior software developer focused on full-stack development and RESTful APIs. I have hands-on experience building real-world systems using {java}, {node}, and {python}, working with {postgres}, {docker}, and well-documented APIs using {swagger}. And on frontend, I do build systems using {react}.{br}{br}Currently pursuing an Bachelor’s degree in Systems Information at {usp}, with a planned academic progression to Bioinformatics.",
 
   "about_heading": "About Me",
   "about_p1": "Hello! My name is Igor, and I’m a junior software developer with a strong focus on backend development and building real-world systems. My interest in software development started back in 2019 when I decided to try creating games — after a few tutorials, I quickly realized that I enjoyed the problem-solving aspect of programming much more than the actual game design. Since then, I have been passionate about learning various programming languages and frameworks as well as React (DOM & Native), particularly in backend technologies like Java (Spring Boot), JavaScript/TypeScript (Node.js + Express), and Python (Django).",

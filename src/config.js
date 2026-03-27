@@ -15,6 +15,10 @@ module.exports = {
       url: 'https://github.com/igorfcfs',
     },
     {
+      name: 'Whatsapp',
+      url: 'https://wa.me/5511930442308',
+    },
+    {
       name: 'Instagram',
       url: 'https://www.instagram.com/igorcasita/',
     },

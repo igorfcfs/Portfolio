@@ -278,6 +278,7 @@ const StyledDegree = styled.li`
     background-color: var(--light-navy);
     color: var(--light-slate);
     font-size: var(--fz-lg);
+    text-align: justify;
 
     @media (max-width: 768px) {
       padding: 20px 0;
@@ -298,6 +299,7 @@ const StyledDegree = styled.li`
     margin: 25px 0 10px;
     padding: 0;
     list-style: none;
+    text-align: justify;
 
     li {
       margin: 0 10px 5px 0;

@@ -92,7 +92,7 @@ const Hero = () => {
             docker: <strong>Docker</strong>,
             swagger: <strong>Swagger/OpenAPI</strong>,
             react: <strong>React (DOM & Native)</strong>,
-            ufabc: <strong>UFABC</strong>,
+            usp: <strong>USP</strong>,
             br: <><br /></>, // Injeção da quebra de linha
           }}
         />
