@@ -25,10 +25,10 @@ module.exports = {
       resolve: `gatsby-plugin-intl`,
       options: {
         path: `${__dirname}/src/intl`,
-        languages: [`en`, `pt`],
+        languages: [`en`, `pt`, `es`],
         defaultLanguage: `en`,
         // ISSO AQUI FAZ A MÁGICA DA TROCA NO APP
-        redirect: true, 
+        redirect: true,
       },
     },
 
@@ -39,7 +39,7 @@ module.exports = {
         // Caminho para a pasta que criamos
         path: `${__dirname}/src/intl`,
         // As línguas que você vai suportar
-        languages: [`en`, `pt`],
+        languages: [`en`, `pt`, `es`],
         // A língua padrão
         defaultLanguage: `en`,
         // Redireciona / para /en automaticamente
@@ -73,7 +73,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/en/*`, `/pt/*`], // Garante que as línguas funcionem offline
+        precachePages: [`/en/*`, `/pt/*`, `/es/*`], // Garante que as línguas funcionem offline
       },
     },
 

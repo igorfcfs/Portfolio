@@ -117,13 +117,13 @@ const Languages = () => {
   const [activeId, setActiveId] = useState('pt');
   const portuguese = intl.formatMessage({ id: 'academic_languages_portuguese' });
   const english = intl.formatMessage({ id: 'academic_languages_english' });
-  // const spanish = intl.formatMessage({ id: 'academic_languages_spanish' });
+  const spanish = intl.formatMessage({ id: 'academic_languages_spanish' });
   // const chinese = intl.formatMessage({ id: 'academic_languages_chinese' });
   // const france = intl.formatMessage({ id: 'academic_languages_france' });
 
   const portugueseLevel = intl.formatMessage({ id: 'academic_languages_portuguese_level' });
   const englishLevel = intl.formatMessage({ id: 'academic_languages_english_level' });
-  // const spanishLevel = intl.formatMessage({ id: 'academic_languages_spanish_level' });
+  const spanishLevel = intl.formatMessage({ id: 'academic_languages_spanish_level' });
   // const chineseLevel = intl.formatMessage({ id: 'academic_languages_chinese_level' });
   // const franceLevel = intl.formatMessage({ id: 'academic_languages_france_level' });
   
@@ -143,13 +143,13 @@ const Languages = () => {
       coords: [-71.0, 42.3], // Boston/Harvard
       certification: 'https://media.licdn.com/dms/image/v2/D4D2DAQFRCxVrfXTt8Q/profile-treasury-document-images_1920/B4DZuQ0ZLRHwAs-/1/1767661213770?e=1771459200&v=beta&t=IaFGbQkI-BS-CcAWLXbr1DQQ6l9ivlhvyEsBsRPdCuU'
     },
-    // { 
-    //   id: 'es',
-    //   name: spanish,
-    //   level: spanishLevel,
-    //   code: 'es',
-    //   coords: [-3.7, 40.4] // Madrid
-    // },
+    {
+      id: 'es',
+      name: spanish,
+      level: spanishLevel,
+      code: 'es',
+      coords: [-3.7, 40.4], // Madrid
+    },
     // { 
     //   id: 'zh',
     //   name: chinese,

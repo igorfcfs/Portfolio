@@ -287,11 +287,18 @@ const Nav = ({ isHome }) => {
         EN
       </button>
       <span>/</span>
-      <button 
-        onClick={() => changeLocale('pt')} 
+      <button
+        onClick={() => changeLocale('pt')}
         className={intl.locale === 'pt' ? 'active' : ''}
       >
         PT
+      </button>
+      <span>/</span>
+      <button
+        onClick={() => changeLocale('es')}
+        className={intl.locale === 'es' ? 'active' : ''}
+      >
+        ES
       </button>
     </>
   );

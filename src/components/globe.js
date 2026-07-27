@@ -195,7 +195,7 @@ const Globe = ({ targetCoords }) => {
         .rotate(state.current.rotation)
         .scale(scale)
         .translate([width / 2, height / 2])
-        .clipAngle(180)
+        .preclip(d3.geoClipAntimeridian)
         .precision(0.1);
 
       if (currentT > 0.8) {

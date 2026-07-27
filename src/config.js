@@ -11,6 +11,10 @@ module.exports = {
       url: 'https://lattes.cnpq.br/1338256166847172',
     },
     {
+      name: 'Orcid',
+      url: 'https://orcid.org/0009-0009-8052-9804',
+    },
+    {
       name: 'GitHub',
       url: 'https://github.com/igorfcfs',
     },
