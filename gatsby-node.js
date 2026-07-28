@@ -119,6 +119,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             test: /miniraf/,
             use: loaders.null(),
           },
+          {
+            test: /(@react-three[\\/](fiber|drei)|[\\/]three[\\/])/,
+            use: loaders.null(),
+          },
         ],
       },
     });

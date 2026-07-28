@@ -5,6 +5,7 @@ import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 // 1. Importar o componente de tradução
 import { FormattedMessage } from 'gatsby-plugin-intl';
+import RobotHero from '../robot-hero';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -13,6 +14,8 @@ const StyledHeroSection = styled.section`
   min-height: 100vh;
   height: 100vh;
   padding: 0;
+  max-width: 1400px;
+  position: relative;
 
   @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
     height: auto;
@@ -45,6 +48,28 @@ const StyledHeroSection = styled.section`
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
+  }
+`;
+
+const StyledRobotWrapper = styled.div`
+  position: absolute;
+  top: 70%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+
+  canvas {
+    pointer-events: auto;
+  }
+
+  @media (max-width: 1300px) {
+    right: -40px;
+  }
+
+  @media (max-width: 1080px) {
+    display: none;
   }
 `;
 
@@ -120,6 +145,10 @@ const Hero = () => {
             ))}
         </TransitionGroup>
       )}
+
+      <StyledRobotWrapper>
+        <RobotHero />
+      </StyledRobotWrapper>
     </StyledHeroSection>
   );
 };

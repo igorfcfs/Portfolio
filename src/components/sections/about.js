@@ -7,6 +7,7 @@ import { usePrefersReducedMotion } from '@hooks';
 // 1. Importar o componente de tradução
 import { FormattedMessage } from 'gatsby-plugin-intl';
 import Skills from './skills';
+import AsciiFlag from '../ascii-flag';
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
@@ -172,6 +173,8 @@ const About = () => {
               alt="Headshot"
             />
           </div>
+
+          <AsciiFlag />
         </StyledPic>
       </div>
 
