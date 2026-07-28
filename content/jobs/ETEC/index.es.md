@@ -6,6 +6,7 @@ location: 'São Paulo, Brasil'
 range: 'Feb 2024 - Presente'
 url: 'https://www.cps.sp.gov.br/etec/'
 lang: 'es'
+logo: 'logo.jpg'
 ---
 
 - Desarrollé y mantuve un **sistema de gestión escolar (SAGE)** para apoyar operaciones académicas y administrativas, incluyendo registros de estudiantes, asistencia y flujos de trabajo internos.

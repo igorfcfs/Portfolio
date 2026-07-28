@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
@@ -45,6 +46,10 @@ const StyledCertItem = styled.li`
     .cert-icon {
       color: var(--accent);
     }
+
+    .cert-badge {
+      border-color: var(--accent);
+    }
   }
 
   /* Responsividade: Vira bloco no mobile */
@@ -57,13 +62,48 @@ const StyledCertItem = styled.li`
   .cert-icon {
     color: var(--light-slate);
     transition: var(--transition);
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     svg {
       width: 40px;
       height: 40px;
     }
 
     @media (max-width: 600px) {
+      margin: 0 auto;
+    }
+  }
+
+  .cert-badge {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    padding: 6px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid var(--lightest-navy);
+    transition: var(--transition);
+    overflow: hidden;
+
+    /* gatsby-plugin-image's FIXED layout sets width/height as an inline
+       style (180px, matching the gatsbyImageData query below). Inline
+       styles beat a plain class rule, so without !important the wrapper
+       stayed at 180x180 inside this 90x90 box and got center-cropped by
+       overflow: hidden. !important is the one thing that outranks an
+       inline style, which is why it's required here specifically. */
+    .gatsby-image-wrapper {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    @media (max-width: 600px) {
+      width: 80px;
+      height: 80px;
       margin: 0 auto;
     }
   }
@@ -150,6 +190,22 @@ const AcademicGrid = () => {
             year
             provider
             url
+            badge {
+              childImageSharp {
+                # trim strips the wide empty margins the issuers ship (Oracle's are
+                # 552x276), then CONTAIN pads back out to a square on white so the
+                # badge is never cropped regardless of its source aspect ratio.
+                gatsbyImageData(
+                  width: 180
+                  height: 180
+                  layout: FIXED
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP]
+                  backgroundColor: "#ffffff"
+                  transformOptions: { trim: 10, fit: CONTAIN }
+                )
+              }
+            }
           }
         }
       }
@@ -174,16 +230,22 @@ const AcademicGrid = () => {
       <StyledCertList>
         {certifications &&
           certifications.map((cert, i) => {
-            const { name, code, year, provider, url } = cert;
+            const { name, code, year, provider, url, badge } = cert;
+            const badgeImage = badge ? getImage(badge) : null;
 
             return (
               <StyledCertItem key={i} ref={el => (revealCerts.current[i] = el)}>
                 {url && <a href={url} className="full-link" aria-label="Certificate Link" target="_blank" rel="noreferrer" />}
-                
-                <div className="cert-icon">
-                  {/* Ícone de Medalha ou Bookmark */}
-                  <Icon name="Bookmark" /> 
-                </div>
+
+                {badgeImage ? (
+                  <div className="cert-badge">
+                    <GatsbyImage image={badgeImage} alt={`${name} badge`} />
+                  </div>
+                ) : (
+                  <div className="cert-icon">
+                    <Icon name="Bookmark" />
+                  </div>
+                )}
 
                 <div className="cert-content">
                   <span className="title">{name}</span>

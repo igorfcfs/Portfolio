@@ -5,6 +5,7 @@ company: 'Engineering Brasil'
 location: 'Brazil'
 range: 'Apr 2025 - Present'
 url: 'https://www.engdb.com.br/'
+logo: 'logo.png'
 ---
 
 - Contributed to the development and maintenance of **enterprise applications** using **Java**, supporting internal systems and client solutions.

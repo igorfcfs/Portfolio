@@ -165,6 +165,96 @@ That's it — `src/components/social.js` (the sidebar) and `src/components/foote
 
 The icon inherits its color via `fill="currentColor"`, so it automatically follows the site's [color system](#color-system--how-to-change-the-theme-colors) — no hardcoded colors needed in the SVG.
 
+## Adding a company logo to a job entry
+
+Each job in `content/jobs/<Company>/index.md` can show a real company logo in the "Professional Experience" section (both in the tab list and in the detail card) via the `logo` frontmatter field. It's declared as a first-class field in `gatsby-node.js` (`logo: File @fileByRelativePath`) and queried/rendered by `src/components/sections/jobs.js`.
+
+If a job has no `logo` set, the section doesn't break or leave a blank space — it automatically falls back to a generated initials badge (the company's first letters on an accent-colored gradient), so this step is optional and purely cosmetic.
+
+To add a real logo:
+
+1. **Drop an image file** in that job's folder, next to its `index.md`:
+
+   ```
+   content/jobs/ETEC/
+   ├── index.md
+   ├── index.es.md
+   ├── index.pt.md
+   ├── index.zh.md
+   └── logo.png   ← add it here
+   ```
+
+2. **Reference it in frontmatter.** Add the `logo` line to *every* language variant of that job (`index.md`, `index.pt.md`, `index.es.md`, `index.zh.md`) since they all share the same folder and the same image:
+
+   ```md
+   ---
+   date: '2024-02-04'
+   title: 'Software Developer (Volunteer)'
+   company: 'ETEC Taboão da Serra'
+   location: 'São Paulo, Brazil'
+   range: 'Feb 2024 - Present'
+   url: 'https://www.cps.sp.gov.br/etec/'
+   logo: 'logo.png'
+   ---
+   ```
+
+3. **Restart the dev server** (`npm run develop`) if it was already running — Gatsby needs to re-run `createSchemaCustomization` to pick up files referenced by a frontmatter field it hasn't seen before. From there, `gatsby-plugin-image` handles resizing, WebP/AVIF conversion and the blurred placeholder automatically, at whatever size the tab (40px) or the detail card (72px) needs.
+
+Tips for the image itself:
+
+- Keep it roughly square (1:1) — it's rendered inside a rounded-square badge, so a wide rectangular logo will get cropped.
+- A transparent PNG (or a PNG exported from an SVG) with the mark centered and little surrounding whitespace looks best; a logo with lots of padding around it will read as tiny inside the badge.
+- Don't worry about resolution — `gatsbyImageData(width: 160, ...)` downsamples it internally, so there's no need to hand-resize before adding it.
+
+## Adding a badge image to a certification entry
+
+Certifications in `content/academic/certifications/index.md` can display a **badge image** (e.g., official certification badge from the issuer) in the "Professional Certifications" section via the `badge` frontmatter field. The badge image replaces the bookmark icon on the left side of each certification card and has a white background.
+
+If a certification has no `badge` set, a bookmark icon is displayed instead. This step is optional and purely cosmetic — you can add badges later as you receive them from the certification providers.
+
+To add a badge image:
+
+1. **Prepare the image file** — save the badge image (PNG, JPG, SVG) in the `content/academic/certifications/` folder or organize it in a subfolder:
+
+   ```
+   content/academic/certifications/
+   ├── index.md
+   ├── cs50-badge.png          ← add badge images here
+   ├── oracle-gaip-badge.png
+   └── python-pcap-badge.png
+   ```
+
+2. **Reference it in frontmatter** in the `certifications` array of `content/academic/certifications/index.md`:
+
+   ```yaml
+   ---
+   certifications:
+     - name: "CS50's Introduction to Computer Science"
+       code: "3d350461-b8d2-431b-85b3-2ce1ae1b2305"
+       year: "2026"
+       provider: "Harvard University"
+       url: "https://certificates.cs50.io/..."
+       badge: "cs50-badge.png"  ← add the badge path here
+
+     - name: "Oracle Cloud Infrastructure 2024 Generative AI Professional"
+       code: "1Z0-1127-24"
+       year: "2024"
+       provider: "Oracle"
+       url: "https://brm-certview.oracle.com/..."
+       badge: "oracle-gaip-badge.png"
+   ---
+   ```
+
+3. **Reload the page** — the dev server hot-reloads, so your changes appear immediately.
+
+Tips for badge images:
+
+- **Size**: Badge images are displayed at 50×50px, so keep them square or near-square (1:1 aspect ratio) for the best appearance.
+- **Background**: Badge images should have a transparent background or assume a white background (the badge container uses white). Most official certification badges already have this.
+- **File format**: Use PNG (for transparent backgrounds) or JPG (for compressed photos). SVG works too if you're exporting vector badges.
+- **Resolution**: You don't need to hand-optimize — just use the original badge file from the certification provider, as it will be downsampled automatically.
+- **Fallback**: If you leave the `badge` field empty or omit it, the bookmark icon shows instead, which is perfectly fine while waiting for badge images from the provider.
+
 ## Color system — how to change the theme colors
 
 **Every color on the site is defined in exactly one place: [`src/styles/palette.js`](src/styles/palette.js).** Nothing else in the codebase should ever contain a hardcoded hex or `rgba()` literal — if you find one, it's a bug.

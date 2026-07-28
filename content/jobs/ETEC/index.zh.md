@@ -6,6 +6,7 @@ location: '巴西圣保罗'
 range: '2024年2月 - 至今'
 url: 'https://www.cps.sp.gov.br/etec/'
 lang: 'zh'
+logo: 'logo.jpg'
 ---
 
 - 开发并维护一套**学校管理系统(SAGE)**,支持学术与行政运营,包括学生档案、考勤记录与内部工作流程。

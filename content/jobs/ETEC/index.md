@@ -5,6 +5,7 @@ company: 'ETEC Taboão da Serra'
 location: 'São Paulo, Brazil'
 range: 'Feb 2024 - Present'
 url: 'https://www.cps.sp.gov.br/etec/'
+logo: 'logo.jpg'
 ---
 
 - Developed and maintained a **school management system (SAGE)** to support academic and administrative operations, including student records, attendance, and internal workflows.

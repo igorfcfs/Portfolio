@@ -6,6 +6,7 @@ location: 'Brasil'
 range: 'Abr 2026 - Presente'
 url: 'https://www.engdb.com.br/'
 lang: 'es'
+logo: 'logo.png'
 ---
 
 - Contribuí en el desarrollo y mantenimiento de **aplicaciones empresariales** utilizando **Java**, dando soporte a sistemas internos y soluciones para clientes.

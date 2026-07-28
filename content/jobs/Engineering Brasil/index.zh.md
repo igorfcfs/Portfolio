@@ -6,6 +6,7 @@ location: '巴西'
 range: '2025年4月 - 至今'
 url: 'https://www.engdb.com.br/'
 lang: 'zh'
+logo: 'logo.png'
 ---
 
 - 参与**企业级应用程序**的开发与维护,使用 **Java** 支持内部系统与客户解决方案。

@@ -13,6 +13,14 @@ const _ = require('lodash');
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
+    type Certification {
+      name: String
+      code: String
+      year: String
+      provider: String
+      url: String
+      badge: File @fileByRelativePath
+    }
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
     }
@@ -29,12 +37,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       tech: [String]
       showInProjects: Boolean
       cover: File @fileByRelativePath
-      
+      logo: File @fileByRelativePath
+
       # ADICIONADOS AGORA:
       lang: String
       tags: [String]
       description: String
       draft: Boolean
+      certifications: [Certification]
     }
   `;
   createTypes(typeDefs);
