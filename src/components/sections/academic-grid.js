@@ -83,7 +83,7 @@ const StyledCertItem = styled.li`
       color: var(--green);
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
-      background: rgba(100, 255, 218, 0.1);
+      background: var(--green-tint);
       padding: 2px 8px;
       border-radius: 4px;
       width: fit-content;

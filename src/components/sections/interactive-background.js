@@ -13,10 +13,27 @@ const CanvasWrapper = styled.canvas`
   background: var(--navy); /* Cor de fundo base */
 `;
 
+// Reads the current theme so the particle network stays a soft accent
+// on dark backgrounds but doesn't turn into a busy, low-contrast mess on light ones.
+const getThemeColors = () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  return isLight
+    ? { rgb: '13, 148, 136', dotAlpha: 0.45, lineAlpha: 0.35 }
+    : { rgb: '100, 255, 218', dotAlpha: 1, lineAlpha: 1 };
+};
+
 const InteractiveBackground = () => {
   const canvasRef = useRef(null);
+  const colorsRef = useRef({ rgb: '100, 255, 218', dotAlpha: 1, lineAlpha: 1 });
 
   useEffect(() => {
+    colorsRef.current = getThemeColors();
+
+    const observer = new MutationObserver(() => {
+      colorsRef.current = getThemeColors();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
@@ -58,9 +75,10 @@ const InteractiveBackground = () => {
 
       // Método para desenhar
       draw() {
+        const { rgb, dotAlpha } = colorsRef.current;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#64ffda'; // Var(--green)
+        ctx.fillStyle = `rgba(${rgb}, ${dotAlpha})`;
         ctx.fill();
       }
 
@@ -111,15 +129,14 @@ const InteractiveBackground = () => {
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 1) - 0.5; // Velocidade aleatória
         let directionY = (Math.random() * 1) - 0.5;
-        let color = '#64ffda';
 
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        particlesArray.push(new Particle(x, y, directionX, directionY, size));
       }
     }
 
     // Loop de Animação
     function animate() {
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
 
       for (let i = 0; i < particlesArray.length; i++) {
@@ -131,14 +148,15 @@ const InteractiveBackground = () => {
     // Desenha as linhas entre partículas próximas
     function connect() {
       let opacityValue = 1;
+      const { rgb, lineAlpha } = colorsRef.current;
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
           let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                          ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-          
+
           if (distance < (canvas.width/7) * (canvas.height/7)) {
-            opacityValue = 1 - (distance / 15000);
-            ctx.strokeStyle = 'rgba(100, 255, 218,' + opacityValue + ')'; // Linha verde com transparência
+            opacityValue = (1 - (distance / 15000)) * lineAlpha;
+            ctx.strokeStyle = `rgba(${rgb}, ${opacityValue})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -162,6 +180,7 @@ const InteractiveBackground = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
   }, []);
 

@@ -15,6 +15,14 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  html,
+  body,
+  body * {
+    @media (prefers-reduced-motion: no-preference) {
+      transition: var(--theme-transition);
+    }
+  }
+
   *,
   *:before,
   *:after {

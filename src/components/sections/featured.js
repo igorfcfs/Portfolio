@@ -248,6 +248,7 @@ const StyledProject = styled.li`
     grid-row: 1 / -1;
     position: relative;
     z-index: 1;
+    border-radius: var(--border-radius);
 
     @media (max-width: 768px) {
       grid-column: 1 / -1;
@@ -256,50 +257,34 @@ const StyledProject = styled.li`
     }
 
     a {
+      display: block;
       width: 100%;
       height: 100%;
-      background-color: var(--green);
       border-radius: var(--border-radius);
+      overflow: hidden;
       vertical-align: middle;
+      transition: var(--transition);
 
       &:hover,
       &:focus {
-        background: transparent;
         outline: 0;
+        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--green-tint);
 
-        &:before,
         .img {
-          background: transparent;
           filter: none;
         }
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 3;
-        transition: var(--transition);
-        background-color: var(--navy);
-        mix-blend-mode: screen;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
+      filter: grayscale(15%) contrast(1.02);
+      transition: var(--transition);
 
       @media (max-width: 768px) {
         object-fit: cover;
         width: auto;
         height: 100%;
-        filter: grayscale(100%) contrast(1) brightness(50%);
       }
     }
   }

@@ -54,5 +54,8 @@
   "contact_description": "I’m a Junior Full Stack Developer with hands-on experience building real-world web and mobile applications using React, Node.js, and Spring Boot. I’m currently open to junior opportunities, internships, freelance projects, and technical collaborations. If you’re looking for someone who values clean code, solid architecture, and continuous learning, feel free to reach out — I’d be glad to connect.",
   "contact_button": "Say Hello",
 
-  "footer_rights": "Designed & Built by Igor Fernando Casita"
+  "footer_rights": "Designed & Built by Igor Fernando Casita",
+
+  "theme_toggle_to_light": "Activate light mode",
+  "theme_toggle_to_dark": "Activate dark mode"
 }

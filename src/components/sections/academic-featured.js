@@ -335,44 +335,31 @@ const StyledDegree = styled.li`
     align-self: center;
     position: relative;
     z-index: 1;
+    border-radius: var(--border-radius);
 
     a {
       width: 100%;
-      background-color: var(--green);
       border-radius: var(--border-radius);
+      overflow: hidden;
       vertical-align: middle;
       display: block;
+      transition: var(--transition);
 
       &:hover,
       &:focus {
-        background: transparent;
-        &:before,
+        outline: 0;
+        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--green-tint);
+
         .img {
-          background: transparent;
           filter: none;
         }
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 3;
-        transition: var(--transition);
-        background-color: var(--navy);
-        mix-blend-mode: screen;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
+      filter: grayscale(15%) contrast(1.02);
+      transition: var(--transition);
     }
   }
 `;

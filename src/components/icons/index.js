@@ -15,6 +15,8 @@ export { default as IconOrcid } from './orcid';
 export { default as IconWhatsapp } from './whatsapp';
 export { default as IconLoader } from './loader';
 export { default as IconLogo } from './logo';
+export { default as IconMoon } from './moon';
+export { default as IconSun } from './sun';
 export { default as IconPlayStore } from './playstore';
 export { default as IconStar } from './star';
 export { default as IconTwitter } from './twitter';

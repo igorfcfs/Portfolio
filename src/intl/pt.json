@@ -54,5 +54,8 @@
   "contact_description": "Sou um Desenvolvedor Full Stack Júnior com experiência prática na construção de aplicações web e mobile usando React, Node.js e Spring Boot. Estou aberto a oportunidades júnior, estágios, freelas e colaborações técnicas. Se você procura alguém que valoriza código limpo, arquitetura sólida e aprendizado contínuo, sinta-se à vontade para entrar em contato — ficarei feliz em conversar.",
   "contact_button": "Diga Olá",
 
-  "footer_rights": "Desenvolvido & Construído por Igor Fernando Casita"
+  "footer_rights": "Desenvolvido & Construído por Igor Fernando Casita",
+
+  "theme_toggle_to_light": "Ativar modo claro",
+  "theme_toggle_to_dark": "Ativar modo escuro"
 }

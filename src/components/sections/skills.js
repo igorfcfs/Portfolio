@@ -52,7 +52,7 @@ const SkillsContainer = styled.div`
   margin-top: 60px;
   margin-bottom: 20px;
 
-  background: rgba(17, 34, 64, 0.3);
+  background: var(--surface-tint);
   padding: 30px 0;
 
   mask-image: linear-gradient(
@@ -76,9 +76,9 @@ const ScrollTrack = styled.div`
 
 const SkillCard = styled.div`
   /* Design Glassmorphism */
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
   
   padding: 15px 30px;

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { navLinks } from '@config';
 import { KEY_CODES } from '@utils';
 import { useOnClickOutside } from '@hooks';
+import { ThemeToggle } from '@components';
 
 const StyledMenu = styled.div`
   display: none;
@@ -158,9 +159,15 @@ const StyledSidebar = styled.aside`
     width: max-content;
   }
   
+  .sidebar-theme-toggle {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
   /* 3. Estilo para os botões DENTRO do menu */
   .sidebar-lang-switcher {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     gap: 20px;
     
@@ -305,6 +312,10 @@ const Menu = () => {
             <a href={resumeUrl} className="resume-link">
               <FormattedMessage id="resume_button" defaultMessage="Resume" />
             </a>
+
+            <div className="sidebar-theme-toggle">
+              <ThemeToggle />
+            </div>
           </nav>
         </StyledSidebar>
       </div>

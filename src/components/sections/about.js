@@ -63,55 +63,46 @@ const StyledPic = styled.div`
     display: block;
     position: relative;
     width: 100%;
-    border-radius: var(--border-radius);
-    background-color: var(--green);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--light-navy);
+    transition: var(--transition);
+
+    &:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      border: 2px solid var(--green);
+      opacity: 0;
+      transform: scale(0.96);
+      transition: var(--transition);
+      z-index: 2;
+      pointer-events: none;
+    }
 
     &:hover,
-    &:focus {
+    &:focus-within {
       outline: 0;
-      transform: translate(-4px, -4px);
+      transform: translateY(-6px);
+      box-shadow: 0 30px 40px -20px var(--navy-shadow), 0 0 0 4px var(--green-tint);
 
-      &:after {
-        transform: translate(8px, 8px);
+      &:before {
+        opacity: 1;
+        transform: scale(1);
       }
 
       .img {
         filter: none;
-        mix-blend-mode: normal;
       }
     }
 
     .img {
       position: relative;
-      border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1);
-      transition: var(--transition);
-    }
-
-    &:before,
-    &:after {
-      content: '';
       display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--border-radius);
+      border-radius: 12px;
+      filter: grayscale(20%) contrast(1.02);
       transition: var(--transition);
-    }
-
-    &:before {
-      top: 0;
-      left: 0;
-      background-color: var(--navy);
-      mix-blend-mode: screen;
-    }
-
-    &:after {
-      border: 2px solid var(--green);
-      top: 14px;
-      left: 14px;
-      z-index: -1;
     }
   }
 `;
@@ -174,7 +165,7 @@ const About = () => {
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpeg"
+              src="../../images/me.png"
               width={500}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}

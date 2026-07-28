@@ -21,8 +21,11 @@ const CanvasContainer = styled.div`
   width: 100%;
   height: 600px;
   position: relative;
-  // background: transparent;
-  background: var(--navy);
+  /* The globe's grid/borders are drawn in a fixed bright teal — they only
+     read against a dark backdrop, so this stays dark regardless of theme. */
+  background: var(--canvas-bg);
+  border-radius: 12px;
+  overflow: hidden;
   cursor: grab;
   touch-action: none;
 

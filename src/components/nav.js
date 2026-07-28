@@ -7,7 +7,7 @@ import styled, { css } from 'styled-components';
 import { navLinks } from '@config';
 import { loaderDelay } from '@utils';
 import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
-import { Menu } from '@components';
+import { Menu, ThemeToggle } from '@components';
 import { IconLogo, IconHex } from '@components/icons';
 
 const StyledHeader = styled.header`
@@ -18,7 +18,7 @@ const StyledHeader = styled.header`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: rgba(10, 25, 47, 0.85);
+  background-color: var(--nav-bg);
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
@@ -39,7 +39,7 @@ const StyledHeader = styled.header`
       css`
         height: var(--nav-scroll-height);
         transform: translateY(0px);
-        background-color: rgba(10, 25, 47, 0.85);
+        background-color: var(--nav-bg);
         box-shadow: 0 10px 30px -10px var(--navy-shadow);
       `};
 
@@ -323,6 +323,7 @@ const Nav = ({ isHome }) => {
               </ol>
               <div>{ResumeLink}</div>
               <DesktopLangSwitcher>{LangButtons}</DesktopLangSwitcher>
+              <ThemeToggle style={{ marginLeft: '15px' }} />
             </StyledLinks>
             <Menu />
           </>
@@ -367,6 +368,7 @@ const Nav = ({ isHome }) => {
                     <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms`, display: 'flex', alignItems: 'center' }}>
                       {ResumeLink}
                       <DesktopLangSwitcher>{LangButtons}</DesktopLangSwitcher>
+                      <ThemeToggle style={{ marginLeft: '15px' }} />
                     </div>
                   </CSSTransition>
                 )}
