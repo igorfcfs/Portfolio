@@ -21,6 +21,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       url: String
       badge: File @fileByRelativePath
     }
+    type Institute {
+      name: String
+      language: String
+      level: String
+      url: String
+      start: Date @dateformat
+      end: Date @dateformat
+      image: File @fileByRelativePath
+    }
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
     }
@@ -45,6 +54,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       description: String
       draft: Boolean
       certifications: [Certification]
+      institutes: [Institute]
     }
   `;
   createTypes(typeDefs);

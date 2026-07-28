@@ -1,5 +1,19 @@
 ---
 certifications:
+  - name: "Oracle Fusion AI Agent Studio Certified Foundations Associate"
+    code: "1Z0-1145-1"
+    year: "2026"
+    provider: "Oracle"
+    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=4A9C8F8268D9D42BADC2BE4D99500E8BF05E186A4D393E1DDBE30CDBC534AE66"
+    badge: "oracle-fusion-ai-agent-studion-foundations.png"
+  
+  - name: "Oracle Agentic AI Foundations Associate"
+    code: "1Z0-1157-26"
+    year: "2026"
+    provider: "Oracle"
+    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=55A50580887F363548F72132F10F681DA739E5686C49A34B9CE572410E6797AD"
+    badge: "oracle-agentic-ai-foundations-associate.png"
+
   - name: "CS50's Introduction to Computer Science"
     code: "3d350461-b8d2-431b-85b3-2ce1ae1b2305"
     year: "2026"

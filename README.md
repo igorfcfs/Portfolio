@@ -255,6 +255,50 @@ Tips for badge images:
 - **Resolution**: You don't need to hand-optimize — just use the original badge file from the certification provider, as it will be downsampled automatically.
 - **Fallback**: If you leave the `badge` field empty or omit it, the bookmark icon shows instead, which is perfectly fine while waiting for badge images from the provider.
 
+## Adding a language course to the Languages carousel
+
+The "Languages" section (`src/components/sections/languages.js`) shows the interactive globe plus the three spoken languages, and below that a horizontal carousel of language-school courses (e.g. Cultura Inglesa, Instituto Miguel de Cervantes). This carousel reads from `content/academic/institutes/index.md`, following the same content-in-Markdown pattern as certifications — it's declared as a first-class `Institute` type in `gatsby-node.js` (`institutes: [Institute]`, with `image: File @fileByRelativePath`).
+
+To add or edit an entry:
+
+1. **Add/edit the entry** in the `institutes` array of `content/academic/institutes/index.md`:
+
+   ```yaml
+   ---
+   institutes:
+     - name: "Cultura Inglesa"
+       language: "English"
+       level: ""
+       url: ""
+       start: "2017-01-01"
+       end: "2026-06-30"
+       image:
+
+     - name: "Instituto Miguel de Cervantes"
+       language: "Español"
+       level: ""
+       url: ""
+       start: "2026-08-01"
+       end:            # leave empty for a course still in progress — the card shows "Present"/"Atual"
+       image:
+   ---
+   ```
+
+   `start`/`end` accept any date `gatsby-transformer-remark` can parse (`YYYY-MM-DD` is simplest); they're formatted per-locale (e.g. "Jan 2017" / "jan. de 2017") at render time. Leaving `end` empty marks the course as ongoing.
+
+2. **Add an image (optional)** — drop the file in the same folder, next to `index.md`:
+
+   ```
+   content/academic/institutes/
+   ├── index.md
+   ├── cultura-inglesa.png            ← add logo images here
+   └── instituto-miguel-de-cervantes.png
+   ```
+
+   Then reference it via the `image` field: `image: "cultura-inglesa.png"`. If left empty, a bookmark icon is shown instead — same fallback behavior as certification badges.
+
+3. **Reload the page** — the dev server hot-reloads, so new/edited cards appear immediately in the carousel.
+
 ## Color system — how to change the theme colors
 
 **Every color on the site is defined in exactly one place: [`src/styles/palette.js`](src/styles/palette.js).** Nothing else in the codebase should ever contain a hardcoded hex or `rgba()` literal — if you find one, it's a bug.

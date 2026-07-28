@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Globe from '../Globe'; // Verifique se o caminho está correto (Globe.js ou globe.js)
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+import { Icon } from '@components/icons';
+import { usePrefersReducedMotion } from '@hooks';
 
 const StyledLanguagesSection = styled.section`
   max-width: 1000px;
@@ -112,9 +116,272 @@ const CertButton = styled.a`
   }
 `;
 
+const CoursesWrapper = styled.div`
+  margin-top: 70px;
+`;
+
+const CoursesHeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  h4 {
+    margin: 0;
+    font-size: var(--fz-lg);
+    color: var(--lightest-slate);
+  }
+`;
+
+const CarouselNav = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+`;
+
+const NavButton = styled.button`
+  ${({ theme }) => theme.mixins.flexCenter};
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--lightest-navy);
+  background: transparent;
+  color: var(--lightest-slate);
+  cursor: pointer;
+  transition: var(--transition);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+`;
+
+const CoursesTrack = styled.div`
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 10px;
+  padding: 10px 10px 20px 10px;
+  scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--navy);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--dark-slate);
+    border-radius: 10px;
+  }
+`;
+
+const CourseCard = styled.div`
+  ${({ theme }) => theme.mixins.boxShadow};
+  position: relative;
+  flex: 0 0 auto;
+  width: min(80vw, 340px);
+  scroll-snap-align: start;
+  background: var(--light-navy);
+  border: 1px solid var(--lightest-navy);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  transition: var(--transition);
+
+  @media (min-width: 600px) {
+    width: 380px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 1px var(--accent-tint);
+  }
+
+  &:hover .course-image img,
+  &:focus-visible .course-image img {
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .course-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--navy);
+
+    .gatsby-image-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      transition: transform 0.4s ease;
+    }
+  }
+
+  .course-image-fallback {
+    ${({ theme }) => theme.mixins.flexCenter};
+    width: 100%;
+    height: 100%;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      color: var(--dark-slate);
+    }
+  }
+
+  .course-pill {
+    position: absolute;
+    top: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+  }
+
+  .course-language-pill {
+    left: 12px;
+    color: var(--lightest-slate);
+    background: rgba(2, 12, 27, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .course-ongoing-pill {
+    right: 12px;
+    color: var(--accent);
+    background: rgba(2, 12, 27, 0.55);
+    border: 1px solid var(--accent);
+  }
+
+  .course-body {
+    padding: 20px;
+  }
+
+  .course-name {
+    margin: 0 0 6px;
+    color: var(--lightest-slate);
+    font-size: var(--fz-xl);
+  }
+
+  .course-level {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--accent);
+  }
+
+  .course-dates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--lightest-navy);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--light-slate);
+  }
+
+  .course-external {
+    ${({ theme }) => theme.mixins.flexCenter};
+    flex-shrink: 0;
+    color: var(--light-slate);
+    transition: var(--transition);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:hover .course-external,
+  &:focus-visible .course-external {
+    color: var(--accent);
+  }
+`;
+
 const Languages = () => {
+  const data = useStaticQuery(graphql`
+    {
+      institutesData: markdownRemark(
+        fileAbsolutePath: { regex: "/content/academic/institutes/index.md/" }
+      ) {
+        frontmatter {
+          institutes {
+            name
+            language
+            level
+            url
+            start(formatString: "YYYY-MM-DD")
+            end(formatString: "YYYY-MM-DD")
+            image {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  aspectRatio: 1.33
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                  quality: 85
+                )
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const intl = useIntl();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const trackRef = useRef(null);
   const [activeId, setActiveId] = useState('pt');
+
+  const institutes = data.institutesData?.frontmatter?.institutes || [];
+  const dateLocale = intl.locale === 'pt' ? 'pt-BR' : 'en-US';
+  const presentLabel = intl.formatMessage({ id: 'academic_languages_present' });
+
+  const formatDate = isoDate => {
+    if (!isoDate) return null;
+    return new Intl.DateTimeFormat(dateLocale, { month: 'short', year: 'numeric' }).format(
+      new Date(isoDate)
+    );
+  };
+
+  const scrollCourses = direction => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector('[data-course-card]');
+    const step = card ? card.offsetWidth + 20 : 280;
+    track.scrollBy({ left: direction * step, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  };
   const portuguese = intl.formatMessage({ id: 'academic_languages_portuguese' });
   const english = intl.formatMessage({ id: 'academic_languages_english' });
   const spanish = intl.formatMessage({ id: 'academic_languages_spanish' });
@@ -214,6 +481,80 @@ const Languages = () => {
           ))}
         </CarouselContainer>
       </ContentGrid>
+
+      {institutes.length > 0 && (
+        <CoursesWrapper>
+          <CoursesHeaderRow>
+            <h4>
+              <FormattedMessage
+                id="academic_languages_courses_heading"
+                defaultMessage="Language Courses"
+              />
+            </h4>
+            <CarouselNav>
+              <NavButton
+                type="button"
+                aria-label={intl.formatMessage({ id: 'academic_languages_carousel_prev' })}
+                onClick={() => scrollCourses(-1)}>
+                <Icon name="ChevronLeft" />
+              </NavButton>
+              <NavButton
+                type="button"
+                aria-label={intl.formatMessage({ id: 'academic_languages_carousel_next' })}
+                onClick={() => scrollCourses(1)}>
+                <Icon name="ChevronRight" />
+              </NavButton>
+            </CarouselNav>
+          </CoursesHeaderRow>
+
+          <CoursesTrack ref={trackRef}>
+            {institutes.map((course, i) => {
+              const { name, language, level, url, start, end, image } = course;
+              const courseImage = image ? getImage(image) : null;
+              const startLabel = formatDate(start);
+              const isOngoing = !end;
+              const dateRangeLabel = isOngoing
+                ? intl.formatMessage({ id: 'academic_languages_since' }, { date: startLabel })
+                : `${startLabel} — ${formatDate(end)}`;
+
+              return (
+                <CourseCard
+                  key={i}
+                  data-course-card
+                  {...(url ? { as: 'a', href: url, target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                  <div className="course-image">
+                    {courseImage ? (
+                      <GatsbyImage image={courseImage} alt={name} />
+                    ) : (
+                      <div className="course-image-fallback">
+                        <Icon name="Bookmark" />
+                      </div>
+                    )}
+                    {language && <span className="course-pill course-language-pill">{language}</span>}
+                    {isOngoing && (
+                      <span className="course-pill course-ongoing-pill">{presentLabel}</span>
+                    )}
+                  </div>
+
+                  <div className="course-body">
+                    <h3 className="course-name">{name}</h3>
+                    {level && <span className="course-level">{level}</span>}
+
+                    <div className="course-dates">
+                      <span>{dateRangeLabel}</span>
+                      {url && (
+                        <span className="course-external" aria-hidden="true">
+                          <Icon name="External" />
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </CourseCard>
+              );
+            })}
+          </CoursesTrack>
+        </CoursesWrapper>
+      )}
     </StyledLanguagesSection>
   );
 };

@@ -1,5 +1,17 @@
 ---
 courses_list:
+  - year: "2026"
+    items:
+      - title: "R para Data Science"
+        provider: "Alura"
+        duration: "48hrs"
+      - title: "Java com Spring Security"
+        provider: "Alura"
+        duration: "40hrs"
+      - title: "Praticando Java"
+        provider: "Alura"
+        duration: "38hrs"
+
   - year: "2024"
     items:
       - title: "Aprenda a programar em JavaScript com Foco no Back-end"

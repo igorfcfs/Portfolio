@@ -53,8 +53,8 @@ const StyledHeroSection = styled.section`
 
 const StyledRobotWrapper = styled.div`
   position: absolute;
-  top: 70%;
-  left: 90%;
+  top: 75%;
+  left: 85%;
   transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
@@ -62,6 +62,29 @@ const StyledRobotWrapper = styled.div`
 
   canvas {
     pointer-events: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* The robot's chassis is near-white, so on the light theme's near-white
+     page background it has almost no silhouette to read against — unlike
+     the dark theme, where the dark page already gives it contrast for free.
+     This soft accent-tinted "stage" behind the model gives it something to
+     sit on in both themes, without touching the 3D scene itself. */
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 12%;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      var(--accent-tint-30),
+      var(--accent-tint) 55%,
+      transparent 80%
+    );
+    filter: blur(30px);
+    opacity: var(--robot-stage-opacity);
   }
 
   @media (max-width: 1300px) {

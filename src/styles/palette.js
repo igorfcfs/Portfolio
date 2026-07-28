@@ -48,7 +48,7 @@ const light = {
   'dark-navy': '#ffffff',
   navy: '#f7f9fc',
   'light-navy': '#ffffff',
-  'lightest-navy': '#e2e8f0',
+  'lightest-navy': '#cbd5e1',
   'dark-slate': '#94a3b8',
   slate: '#475569',
   'light-slate': '#334155',

@@ -40,6 +40,12 @@ const variables = css`
 
     --hamburger-width: 30px;
 
+    /* Hero robot's "stage" glow (see hero.js) — the dark theme's page
+       background already gives the near-white chassis contrast for free,
+       so the glow stays subtle there; the light theme needs it at full
+       strength since the chassis nearly matches the page background. */
+    --robot-stage-opacity: 0.5;
+
     --ham-before: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
     --ham-before-active: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
     --ham-after: bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -50,6 +56,8 @@ const variables = css`
   /* Light theme overrides — toggled via data-theme="light" on <html> */
   :root[data-theme='light'] {
     ${toCssVars(palette.light)}
+
+    --robot-stage-opacity: 1;
   }
 `;
 
