@@ -45,44 +45,55 @@ const InteractiveBackground = () => {
     // Configurações do Efeito
     let particlesArray;
     const numberOfParticles = 80; // Quantidade de pontos (diminua se travar)
-    const connectionDistance = 120; // Distância para criar linhas
+    const connectionDistance = 120; // Distância para criar linhas entre o cursor e as partículas
     const mouseRadius = 150; // Área de reação do mouse
+
+    // Usuários que preferem menos movimento continuam com a rede visível,
+    // só sem a deriva automática e o brilho pulsante das partículas.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Ajusta o tamanho do canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let mouse = {
-      x: null,
-      y: null,
-      radius: (canvas.height / 80) * (canvas.width / 80),
-    };
+    const mouse = { x: null, y: null };
+    let time = 0;
+    const ripples = []; // Ondas geradas por clique
 
     // Rastreia o mouse
-    const handleMouseMove = (event) => {
+    const handleMouseMove = event => {
       mouse.x = event.x;
       mouse.y = event.y;
     };
 
+    // Clique gera uma onda expansiva no ponto tocado — feedback vistoso
+    // e imediato, mas pontual (não é uma animação contínua em loop).
+    const handleClick = event => {
+      ripples.push({ x: event.clientX, y: event.clientY, radius: 0, alpha: 0.6 });
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('click', handleClick);
 
     // Classe da Partícula
     class Particle {
-      constructor(x, y, directionX, directionY, size, color) {
+      constructor(x, y, directionX, directionY, size) {
         this.x = x;
         this.y = y;
         this.directionX = directionX;
         this.directionY = directionY;
         this.size = size;
-        this.color = color;
+        this.twinklePhase = Math.random() * Math.PI * 2;
+        this.twinkleSpeed = 0.6 + Math.random() * 1.4;
       }
 
       // Método para desenhar
       draw() {
         const { rgb, dotAlpha } = colorsRef.current;
+        const twinkle = prefersReducedMotion ? 1 : 0.6 + 0.4 * Math.sin(time * this.twinkleSpeed + this.twinklePhase);
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = `rgba(${rgb}, ${dotAlpha})`;
+        ctx.fillStyle = `rgba(${rgb}, ${dotAlpha * twinkle})`;
         ctx.fill();
       }
 
@@ -96,29 +107,22 @@ const InteractiveBackground = () => {
           this.directionY = -this.directionY;
         }
 
-        // Verifica colisão com o mouse
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (!prefersReducedMotion) {
+          // Repulsão suave: quanto mais perto do cursor, mais forte o empurrão
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < mouseRadius + this.size) {
-          if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-            this.x += 2; // Empurra pra direita
+          if (mouse.x !== null && distance < mouseRadius && distance > 0) {
+            const force = (mouseRadius - distance) / mouseRadius;
+            this.x += (dx / distance) * force * 3;
+            this.y += (dy / distance) * force * 3;
           }
-          if (mouse.x > this.x && this.x > this.size * 10) {
-            this.x -= 2; // Empurra pra esquerda
-          }
-          if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-            this.y += 2;
-          }
-          if (mouse.y > this.y && this.y > this.size * 10) {
-            this.y -= 2;
-          }
+
+          // Move a partícula
+          this.x += this.directionX;
+          this.y += this.directionY;
         }
-
-        // Move a partícula
-        this.x += this.directionX;
-        this.y += this.directionY;
 
         this.draw();
       }
@@ -141,12 +145,52 @@ const InteractiveBackground = () => {
     // Loop de Animação
     function animate() {
       animationFrameId = requestAnimationFrame(animate);
+      time += 0.016;
       ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+      drawCursorGlow();
 
       for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
       }
       connect();
+      drawRipples();
+    }
+
+    // Brilho suave que segue o cursor, dando profundidade ao fundo
+    function drawCursorGlow() {
+      if (mouse.x === null) {
+        return;
+      }
+      const { rgb } = colorsRef.current;
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, mouseRadius);
+      gradient.addColorStop(0, `rgba(${rgb}, 0.12)`);
+      gradient.addColorStop(1, `rgba(${rgb}, 0)`);
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Ondas expansivas nascidas de um clique — feedback pontual, não decorativo em loop
+    function drawRipples() {
+      const { rgb } = colorsRef.current;
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const ripple = ripples[i];
+        ripple.radius += 4;
+        ripple.alpha -= 0.015;
+
+        if (ripple.alpha <= 0) {
+          ripples.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${rgb}, ${ripple.alpha})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
     }
 
     // Desenha as linhas entre partículas próximas
@@ -168,6 +212,24 @@ const InteractiveBackground = () => {
             ctx.stroke();
           }
         }
+
+        // Conecta a partícula ao cursor quando está por perto — reforça a
+        // sensação de rede "viva" que reage a quem está usando o site.
+        if (mouse.x !== null) {
+          const mdx = particlesArray[a].x - mouse.x;
+          const mdy = particlesArray[a].y - mouse.y;
+          const mouseDistance = Math.sqrt(mdx * mdx + mdy * mdy);
+
+          if (mouseDistance < connectionDistance) {
+            const mouseOpacity = (1 - mouseDistance / connectionDistance) * lineAlpha;
+            ctx.strokeStyle = `rgba(${rgb}, ${mouseOpacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
       }
     }
 
@@ -183,6 +245,7 @@ const InteractiveBackground = () => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrameId);
       observer.disconnect();
     };
