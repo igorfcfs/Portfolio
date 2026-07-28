@@ -6,6 +6,15 @@ export const hex2rgba = (hex, alpha = 1) => {
 export const navDelay = 1000;
 export const loaderDelay = 2000;
 
+const RESUME_FILES = {
+  en: 'Igor Fernando C.F. Silva - CV (English).pdf',
+  pt: 'Igor Fernando C.F. Silva - CV (Português).pdf',
+  es: 'Igor Fernando C.F. Silva - CV (Español).pdf',
+  zh: 'Igor Fernando C.F. Silva - CV (Mandarim).pdf',
+};
+
+export const getResumePath = locale => `/${RESUME_FILES[locale] || RESUME_FILES.en}`;
+
 export const KEY_CODES = {
   ARROW_LEFT: 'ArrowLeft',
   ARROW_LEFT_IE11: 'Left',

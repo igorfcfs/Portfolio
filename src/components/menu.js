@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 // Imports necessários
-import { Link, FormattedMessage, useIntl, changeLocale } from 'gatsby-plugin-intl';
+import { Link, FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { withPrefix } from 'gatsby';
 import styled from 'styled-components';
 import { navLinks } from '@config';
-import { KEY_CODES } from '@utils';
+import { KEY_CODES, getResumePath } from '@utils';
 import { useOnClickOutside } from '@hooks';
 import { ThemeToggle } from '@components';
 
@@ -274,9 +274,7 @@ const Menu = () => {
   const wrapperRef = useRef();
   useOnClickOutside(wrapperRef, () => setMenuOpen(false));
 
-  const resumeUrl = intl.locale === 'pt' 
-              ? withPrefix("/Igor Fernando C.F. Silva - CV (Português).pdf") 
-              : withPrefix("/Igor Fernando C.F. Silva - CV (English).pdf");
+  const resumeUrl = withPrefix(getResumePath(intl.locale));
 
   return (
     <StyledMenu>

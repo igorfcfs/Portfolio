@@ -1,7 +1,7 @@
 const config = require('./src/config');
 
 module.exports = {
-  pathPrefix: "/Portfolio", 
+  pathPrefix: '/Portfolio', 
   
   siteMetadata: {
     title: 'Igor Fernando Casita',
@@ -25,7 +25,7 @@ module.exports = {
       resolve: `gatsby-plugin-intl`,
       options: {
         path: `${__dirname}/src/intl`,
-        languages: [`en`, `pt`, `es`],
+        languages: [`en`, `pt`, `es`, `zh`],
         defaultLanguage: `en`,
         // ISSO AQUI FAZ A MÁGICA DA TROCA NO APP
         redirect: true,
@@ -39,7 +39,7 @@ module.exports = {
         // Caminho para a pasta que criamos
         path: `${__dirname}/src/intl`,
         // As línguas que você vai suportar
-        languages: [`en`, `pt`, `es`],
+        languages: [`en`, `pt`, `es`, `zh`],
         // A língua padrão
         defaultLanguage: `en`,
         // Redireciona / para /en automaticamente
@@ -70,7 +70,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/en/*`, `/pt/*`, `/es/*`], // Garante que as línguas funcionem offline
+        precachePages: [`/en/*`, `/pt/*`, `/es/*`, `/zh/*`], // Garante que as línguas funcionem offline
       },
     },
 
