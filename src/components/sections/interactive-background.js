@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { palette, hexToRgb } from '@styles/palette';
 
 const CanvasWrapper = styled.canvas`
   display: block;
@@ -15,11 +16,14 @@ const CanvasWrapper = styled.canvas`
 
 // Reads the current theme so the particle network stays a soft accent
 // on dark backgrounds but doesn't turn into a busy, low-contrast mess on light ones.
+// The rgb triplets come straight from palette.js, so a new accent color there
+// updates the particles too — nothing here is a separately-maintained color.
 const getThemeColors = () => {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  const theme = isLight ? palette.light : palette.dark;
   return isLight
-    ? { rgb: '13, 148, 136', dotAlpha: 0.45, lineAlpha: 0.35 }
-    : { rgb: '100, 255, 218', dotAlpha: 1, lineAlpha: 1 };
+    ? { rgb: hexToRgb(theme.accent), dotAlpha: 0.45, lineAlpha: 0.35 }
+    : { rgb: hexToRgb(theme.accent), dotAlpha: 1, lineAlpha: 1 };
 };
 
 const InteractiveBackground = () => {

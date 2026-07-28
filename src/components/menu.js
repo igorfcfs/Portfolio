@@ -50,7 +50,7 @@ const StyledHamburgerButton = styled.button`
     width: var(--hamburger-width);
     height: 2px;
     border-radius: var(--border-radius);
-    background-color: var(--green);
+    background-color: var(--accent);
     transition-duration: 0.22s;
     transition-property: transform;
     transition-delay: ${props => (props.menuOpen ? `0.12s` : `0s`)};
@@ -68,7 +68,7 @@ const StyledHamburgerButton = styled.button`
       width: var(--hamburger-width);
       height: 2px;
       border-radius: 4px;
-      background-color: var(--green);
+      background-color: var(--accent);
       transition-timing-function: ease;
       transition-duration: 0.15s;
       transition-property: transform;
@@ -140,7 +140,7 @@ const StyledSidebar = styled.aside`
         content: '0' counter(item) '.';
         display: block;
         margin-bottom: 5px;
-        color: var(--green);
+        color: var(--accent);
         font-size: var(--fz-sm);
       }
     }
@@ -173,21 +173,21 @@ const StyledSidebar = styled.aside`
     
     button {
       background: none;
-      border: 1px solid var(--green);
+      border: 1px solid var(--accent);
       border-radius: 4px;
       padding: 12px 20px; /* Botões grandes para toque */
-      color: var(--green);
+      color: var(--accent);
       font-family: var(--font-mono);
       font-size: var(--fz-md);
       cursor: pointer;
       
       &.active {
-        background-color: var(--green-tint);
+        background-color: var(--accent-tint);
         font-weight: bold;
       }
       
       &:hover {
-        background-color: var(--green-tint);
+        background-color: var(--accent-tint);
       }
     }
   }

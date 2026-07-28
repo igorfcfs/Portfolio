@@ -41,7 +41,7 @@ const AccordionHeader = styled.button`
   &:hover,
   &:focus {
     background-color: var(--light-navy);
-    color: var(--green);
+    color: var(--accent);
   }
 
   .year-title {
@@ -53,7 +53,7 @@ const AccordionHeader = styled.button`
 
   .icon-container {
     margin-left: 20px;
-    color: var(--green);
+    color: var(--accent);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     /* Roda 90 graus quando aberto */
     transform: ${({ isOpen }) => (isOpen ? 'rotate(90deg)' : 'rotate(0deg)')};
@@ -91,7 +91,7 @@ const CourseItem = styled.li`
   }
 
   .provider {
-    color: var(--green);
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
   }

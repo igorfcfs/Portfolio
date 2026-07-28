@@ -48,7 +48,7 @@ const CarouselContainer = styled.div`
 const LanguageCard = styled.div`
   ${({ theme }) => theme.mixins.boxShadow};
   background: ${({ isActive }) => (isActive ? 'var(--light-navy)' : 'transparent')};
-  border: 1px solid ${({ isActive }) => (isActive ? 'var(--green)' : 'transparent')};
+  border: 1px solid ${({ isActive }) => (isActive ? 'var(--accent)' : 'transparent')};
   padding: 15px;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -79,7 +79,7 @@ const LanguageCard = styled.div`
 
     h3 {
       margin: 0;
-      color: ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--lightest-slate)')};
+      color: ${({ isActive }) => (isActive ? 'var(--accent)' : 'var(--lightest-slate)')};
       font-size: var(--fz-lg);
     }
     p {
@@ -96,9 +96,9 @@ const CertButton = styled.a`
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--green);
+  color: var(--accent);
   background-color: transparent;
-  border: 1px solid var(--green);
+  border: 1px solid var(--accent);
   border-radius: var(--border-radius);
   padding: 5px 10px;
   text-decoration: none;
@@ -107,7 +107,7 @@ const CertButton = styled.a`
   margin-top: 2px;
 
   &:hover {
-    background-color: var(--green-tint);
+    background-color: var(--accent-tint);
     transform: translateY(-2px);
   }
 `;

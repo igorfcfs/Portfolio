@@ -1,31 +1,17 @@
 import { css } from 'styled-components';
+import { palette } from './palette';
+
+// Generates `--name: value;` lines from a palette object — this is what
+// actually turns a palette.js edit into a live CSS custom property.
+const toCssVars = theme =>
+  Object.entries(theme)
+    .map(([name, value]) => `--${name}: ${value};`)
+    .join('\n    ');
 
 const variables = css`
   :root {
-    /* Dark theme (default) */
-    --dark-navy: #020c1b;
-    --navy: #0a192f;
-    --light-navy: #112240;
-    --lightest-navy: #233554;
-    --navy-shadow: rgba(2, 12, 27, 0.7);
-    --dark-slate: #495670;
-    --slate: #8892b0;
-    --light-slate: #a8b2d1;
-    --lightest-slate: #ccd6f6;
-    --white: #e6f1ff;
-    --green: #64ffda;
-    --green-tint: rgba(100, 255, 218, 0.1);
-    --pink: #f57dff;
-    --blue: #57cbff;
-    --nav-bg: rgba(10, 25, 47, 0.85);
-    --surface-tint: rgba(17, 34, 64, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.05);
-
-    /* Fixed dark surface for canvas/data-viz widgets whose drawn colors
-       (bright teal strokes) only read against a dark backdrop — stays
-       constant across themes so it never gets overridden below. */
-    --canvas-bg: #0a192f;
+    /* Dark theme (default) — colors come from src/styles/palette.js */
+    ${toCssVars(palette.dark)}
 
     --font-sans: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui,
       sans-serif;
@@ -63,24 +49,7 @@ const variables = css`
 
   /* Light theme overrides — toggled via data-theme="light" on <html> */
   :root[data-theme='light'] {
-    --dark-navy: #ffffff;
-    --navy: #f7f9fc;
-    --light-navy: #ffffff;
-    --lightest-navy: #e2e8f0;
-    --navy-shadow: rgba(15, 23, 42, 0.12);
-    --dark-slate: #94a3b8;
-    --slate: #475569;
-    --light-slate: #334155;
-    --lightest-slate: #0f172a;
-    --white: #0f172a;
-    --green: #0d9488;
-    --green-tint: rgba(13, 148, 136, 0.08);
-    --pink: #c026d3;
-    --blue: #0284c7;
-    --nav-bg: rgba(255, 255, 255, 0.85);
-    --surface-tint: rgba(15, 23, 42, 0.035);
-    --glass-bg: rgba(15, 23, 42, 0.025);
-    --glass-border: rgba(15, 23, 42, 0.08);
+    ${toCssVars(palette.light)}
   }
 `;
 

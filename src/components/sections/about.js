@@ -42,7 +42,7 @@ const StyledText = styled.div`
         content: '▹';
         position: absolute;
         left: 0;
-        color: var(--green);
+        color: var(--accent);
         font-size: var(--fz-sm);
         line-height: 12px;
       }
@@ -73,7 +73,7 @@ const StyledPic = styled.div`
       position: absolute;
       inset: 0;
       border-radius: 12px;
-      border: 2px solid var(--green);
+      border: 2px solid var(--accent);
       opacity: 0;
       transform: scale(0.96);
       transition: var(--transition);
@@ -85,7 +85,7 @@ const StyledPic = styled.div`
     &:focus-within {
       outline: 0;
       transform: translateY(-6px);
-      box-shadow: 0 30px 40px -20px var(--navy-shadow), 0 0 0 4px var(--green-tint);
+      box-shadow: 0 30px 40px -20px var(--navy-shadow), 0 0 0 4px var(--accent-tint);
 
       &:before {
         opacity: 1;

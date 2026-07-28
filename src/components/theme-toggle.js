@@ -12,7 +12,7 @@ const StyledToggle = styled.button`
   height: 40px;
   border-radius: 50%;
   background: transparent;
-  color: var(--green);
+  color: var(--accent);
   border: 1px solid var(--lightest-navy);
   transition: var(--transition);
 
@@ -24,8 +24,8 @@ const StyledToggle = styled.button`
   &:hover,
   &:focus-visible {
     outline: 0;
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px var(--green-tint);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-tint);
   }
 `;
 

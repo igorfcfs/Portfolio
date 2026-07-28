@@ -60,12 +60,9 @@ module.exports = {
         theme_color: config.colors.navy,
         display: 'standalone',
         icon: 'src/images/logo.png',
-        
+
         // Força a atualização do ícone caso mude
         cache_busting_mode: 'none',
-        
-        // IMPORTANTE: Diz pro navegador que esse redirect é intencional
-        include_favicon: false, 
       },
     },
 

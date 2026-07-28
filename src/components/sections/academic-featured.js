@@ -7,6 +7,7 @@ import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
+import { palette, alpha } from '@styles/palette';
 
 // --- FUNÇÃO DNA REALISTA (Mesma de antes) ---
 const getRealisticDna = (color) => {
@@ -43,7 +44,7 @@ const LineBase = styled.div`
   left: 50%;
   transform: translateX(-50%);
 
-  background-image: ${props => getRealisticDna('#495670')};
+  background-image: ${() => getRealisticDna(palette.dark['dark-slate'])};
   background-repeat: repeat-y;
   background-position: center top;
   opacity: 0.4;
@@ -73,10 +74,10 @@ const LineProgress = styled.div`
     display: block;
     width: 100%;
     height: 10000px; 
-    background-image: ${props => getRealisticDna('#64ffda')};
+    background-image: ${() => getRealisticDna(palette.dark.accent)};
     background-repeat: repeat-y;
     background-position: center top;
-    filter: drop-shadow(0 0 2px rgba(100, 255, 218, 0.4)); 
+    filter: drop-shadow(0 0 2px ${alpha(palette.dark.accent, 0.4)});
   }
 
   /* MOBILE: Encostado na Esquerda */
@@ -113,8 +114,8 @@ const StyledDegree = styled.li`
     height: 16px;
     border-radius: 50%;
     background-color: var(--navy); 
-    border: 2px solid var(--green);
-    box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.1), 0 0 10px rgba(100, 255, 218, 0.3);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-tint), 0 0 10px var(--accent-tint-30);
     z-index: 10;
     transition: var(--transition);
     
@@ -134,7 +135,7 @@ const StyledDegree = styled.li`
     top: 28px;
     height: 1px;
     width: 8%;
-    background-color: var(--green);
+    background-color: var(--accent);
     opacity: 0.3;
     z-index: 0;
 
@@ -235,7 +236,7 @@ const StyledDegree = styled.li`
 
   .degree-overline {
     margin: 10px 0;
-    color: var(--green);
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
     font-weight: 400;
@@ -348,7 +349,7 @@ const StyledDegree = styled.li`
       &:hover,
       &:focus {
         outline: 0;
-        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--green-tint);
+        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--accent-tint);
 
         .img {
           filter: none;

@@ -1,3 +1,5 @@
+const { palette } = require('./styles/palette');
+
 module.exports = {
   email: 'igorf.casita@gmail.com',
 
@@ -52,9 +54,9 @@ module.exports = {
   ],
 
   colors: {
-    green: '#64ffda',
-    navy: '#0a192f',
-    darkNavy: '#020c1b',
+    accent: palette.dark.accent,
+    navy: palette.dark.navy,
+    darkNavy: palette.dark['dark-navy'],
   },
 
   srConfig: (delay = 200, viewFactor = 0.25) => ({

@@ -39,11 +39,11 @@ const StyledCertItem = styled.li`
 
   &:hover {
     transform: translateY(-5px);
-    border: 1px solid var(--green);
+    border: 1px solid var(--accent);
     box-shadow: 0 10px 30px -15px var(--navy-shadow);
 
     .cert-icon {
-      color: var(--green);
+      color: var(--accent);
     }
   }
 
@@ -80,10 +80,10 @@ const StyledCertItem = styled.li`
     }
 
     .code {
-      color: var(--green);
+      color: var(--accent);
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
-      background: var(--green-tint);
+      background: var(--accent-tint);
       padding: 2px 8px;
       border-radius: 4px;
       width: fit-content;

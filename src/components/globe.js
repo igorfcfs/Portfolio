@@ -5,6 +5,11 @@ import styled, { keyframes } from 'styled-components';
 import { useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import { useIntl } from 'gatsby-plugin-intl';
+import { palette, alpha } from '@styles/palette';
+
+// The globe always sits on the fixed dark canvas backdrop (see --canvas-bg),
+// so its drawn colors come from the dark palette regardless of site theme.
+const GLOBE_ACCENT = palette.dark.accent;
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -43,7 +48,7 @@ const Loader = styled.div`
   transform: translate(-50%, -50%);
   font-family: var(--font-mono);
   font-size: var(--fz-md);
-  color: var(--green);
+  color: var(--accent);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -51,7 +56,7 @@ const Loader = styled.div`
   
   &:before {
     content: '> ';
-    color: var(--green);
+    color: var(--accent);
   }
 `;
 
@@ -68,11 +73,11 @@ const ButtonContainer = styled.div`
 
 const ActionButton = styled.button`
   ${({ theme }) => theme.mixins.button};
-  background: rgba(10, 25, 47, 0.85);
+  background: ${alpha(palette.dark.navy, 0.85)};
   backdrop-filter: blur(5px);
   padding: 12px 20px;
   font-size: 13px;
-  border: 1px solid var(--green);
+  border: 1px solid var(--accent);
 `;
 
 const MARKERS = [
@@ -211,13 +216,13 @@ const Globe = ({ targetCoords }) => {
 
       // Grade
       context.beginPath();
-      context.strokeStyle = `rgba(100, 255, 218, 0.08)`;
+      context.strokeStyle = alpha(GLOBE_ACCENT, 0.08);
       path(d3.geoGraticule()());
       context.stroke();
 
       // Países
       context.beginPath();
-      context.strokeStyle = `rgba(100, 255, 218, ${0.4 + (currentT * 0.6)})`;
+      context.strokeStyle = alpha(GLOBE_ACCENT, 0.4 + (currentT * 0.6));
       context.lineWidth = 1;
       path(landData);
       context.stroke();
@@ -249,19 +254,19 @@ const Globe = ({ targetCoords }) => {
           context.beginPath();
           context.moveTo(center[0], center[1]);
           context.lineTo(node.x, node.y);
-          context.strokeStyle = 'rgba(100, 255, 218, 0.2)';
+          context.strokeStyle = alpha(GLOBE_ACCENT, 0.2);
           context.stroke();
 
           context.beginPath();
           context.arc(center[0], center[1], 2, 0, 2 * Math.PI);
-          context.fillStyle = '#64ffda';
+          context.fillStyle = GLOBE_ACCENT;
           context.fill();
 
-          context.fillStyle = 'rgba(2, 12, 27, 0.85)';
+          context.fillStyle = alpha(palette.dark['dark-navy'], 0.85);
           const textWidth = context.measureText(node.name).width;
           context.fillRect(node.x - textWidth/2 - 6, node.y - 10, textWidth + 12, 20);
-          
-          context.fillStyle = '#64ffda';
+
+          context.fillStyle = GLOBE_ACCENT;
           context.font = '11px "SF Mono", "Fira Code", monospace';
           context.textAlign = 'center';
           context.fillText(node.name, node.x, node.y + 4);

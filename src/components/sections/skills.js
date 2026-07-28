@@ -96,14 +96,14 @@ const SkillCard = styled.div`
 
   /* Efeito Glow ao passar o mouse no CARD (mas o trilho continua andando) */
   &:hover {
-    background: rgba(100, 255, 218, 0.1); /* Verde bem suave */
-    border-color: var(--green);
-    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-tint-20);
     transform: translateY(-5px) scale(1.05);
-    
+
     svg, span {
-      color: var(--green);
-      filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.5));
+      color: var(--accent);
+      filter: drop-shadow(0 0 5px var(--accent-tint-50));
     }
   }
 

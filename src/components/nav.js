@@ -67,7 +67,7 @@ const StyledNav = styled.nav`
     ${({ theme }) => theme.mixins.flexCenter};
 
     a {
-      color: var(--green);
+      color: var(--accent);
       width: 42px;
       height: 42px;
       position: relative;
@@ -136,7 +136,7 @@ const StyledLinks = styled.div`
         &:before {
           content: '0' counter(item) '.';
           margin-right: 5px;
-          color: var(--green);
+          color: var(--accent);
           font-size: var(--fz-xxs);
           text-align: right;
         }
@@ -167,7 +167,7 @@ const DesktopLangSwitcher = styled.div`
     transition: var(--transition);
 
     &:hover, &.active {
-      color: var(--green);
+      color: var(--accent);
     }
   }
 `;
@@ -201,7 +201,7 @@ const MobileLangSwitcher = styled.div`
       text-align: center;
       
       &.active {
-        color: var(--green);
+        color: var(--accent);
         font-weight: bold;
       }
     }

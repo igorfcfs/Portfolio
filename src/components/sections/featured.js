@@ -119,7 +119,7 @@ const StyledProject = styled.li`
 
   .project-overline {
     margin: 10px 0;
-    color: var(--green);
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
     font-weight: 400;
@@ -268,7 +268,7 @@ const StyledProject = styled.li`
       &:hover,
       &:focus {
         outline: 0;
-        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--green-tint);
+        box-shadow: 0 20px 30px -15px var(--navy-shadow), 0 0 0 3px var(--accent-tint);
 
         .img {
           filter: none;
