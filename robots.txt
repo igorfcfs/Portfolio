@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://igorfcfs.github.io/sitemap.xml
+Sitemap: https://igorfcfs.github.io/Portfolio/sitemap-index.xml
 Host: https://igorfcfs.github.io
