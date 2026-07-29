@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import styled, { keyframes } from 'styled-components';
 import { useSpring } from 'react-spring';
-import { useDrag } from 'react-use-gesture';
+import { useDrag } from '@use-gesture/react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { palette, alpha } from '@styles/palette';
 
@@ -86,7 +86,17 @@ const MARKERS = [
   { id: 'harvard', name: 'Harvard', coords: [-71.110, 42.374] },
 ];
 
+// useDrag/useSpring touch browser-only APIs at call time (canvas, pointer
+// events), so the globe must not render during Gatsby's SSR/build-html pass —
+// mirrors the client-only gating robot-hero.js uses for its r3f Canvas.
 const Globe = ({ targetCoords }) => {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
+  if (!isClient) return null;
+  return <GlobeCanvas targetCoords={targetCoords} />;
+};
+
+const GlobeCanvas = ({ targetCoords }) => {
   const intl = useIntl();
   const canvasRef = useRef(null);
   const [landData, setLandData] = useState(null);

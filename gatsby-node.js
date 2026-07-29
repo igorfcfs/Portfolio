@@ -70,7 +70,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     {
       postsRemark: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/posts/" } }
-        sort: { order: DESC, fields: [frontmatter___date] }
+        sort: { frontmatter: { date: DESC } }
         limit: 1000
       ) {
         edges {
@@ -82,7 +82,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
       tagsGroup: allMarkdownRemark(limit: 2000) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
       }
@@ -120,8 +120,34 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   });
 };
 
+// Gatsby's built-in file-loader/url-loader rules (fonts, images, media, misc
+// assets) hash filenames via loader-utils, which defaults to MD4 when no hash
+// type is given. Node 17+'s OpenSSL 3 provider rejects MD4, crashing the
+// build with "digital envelope routines::unsupported" — normally worked
+// around with NODE_OPTIONS=--openssl-legacy-provider. Forcing an explicit
+// sha256 through loader-utils' `[hashType:hash:digestType:length]` template
+// syntax avoids MD4 entirely, so that flag is no longer needed.
+const SAFE_HASH_NAME = 'static/[name]-[sha256:hash:hex:8].[ext]';
+const fileOrUrlLoader = /[\\/](file|url)-loader[\\/]/;
+
+const useSafeAssetHash = rule => {
+  if (!Array.isArray(rule.use)) return rule;
+  return {
+    ...rule,
+    use: rule.use.map(use =>
+      use && fileOrUrlLoader.test(use.loader || '')
+        ? { ...use, options: { ...use.options, name: SAFE_HASH_NAME } }
+        : use
+    ),
+  };
+};
+
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+exports.onCreateWebpackConfig = ({ stage, loaders, actions, getConfig }) => {
+  const config = getConfig();
+  config.module.rules = config.module.rules.map(useSafeAssetHash);
+  actions.replaceWebpackConfig(config);
+
   // https://www.gatsbyjs.org/docs/debugging-html-builds/#fixing-third-party-modules
   if (stage === 'build-html' || stage === 'develop-html') {
     actions.setWebpackConfig({
@@ -140,7 +166,16 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             use: loaders.null(),
           },
           {
-            test: /(@react-three[\\/](fiber|drei)|[\\/]three[\\/])/,
+            // Only the fiber/drei wrappers touch browser-only APIs (canvas,
+            // WebGL context) at module scope. Bare `three` is pure JS/math
+            // (Curve, Vector3, materials) and robot-hero.js constructs a
+            // number of THREE.* instances at module scope, so it must stay
+            // real during SSR or those constructions throw.
+            test: /@react-three[\\/](fiber|drei)/,
+            use: loaders.null(),
+          },
+          {
+            test: /@use-gesture/,
             use: loaders.null(),
           },
         ],
