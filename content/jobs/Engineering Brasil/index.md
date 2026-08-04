@@ -1,21 +1,23 @@
 ---
 date: '2026-04-13'
-title: 'Java Development Intern'
+title: 'Full Stack Development Intern'
 company: 'Engineering Brasil'
 location: 'Brazil'
-range: 'Apr 2025 - Present'
+range: 'Apr 2026 - Present'
 url: 'https://www.engdb.com.br/'
 logo: 'logo.png'
 ---
 
-- Contributed to the development and maintenance of **enterprise applications** using **Java**, supporting internal systems and client solutions.
+- Development and maintenance of **full-stack applications** using **Java, Python, React**, and other stacks across internal systems and client solutions.
 
-- Designed and implemented **RESTful APIs** with **Spring Boot**, following best practices for architecture, validation, and business logic.
+- Implementation of new **features** and **bug fixing** in production applications.
 
-- Worked with **relational databases**, focusing on data modeling, query optimization, and ensuring data integrity.
+- Support in the creation and consumption of **REST APIs**.
 
-- Assisted in building and maintaining **backend services**, improving system performance, reliability, and scalability.
+- Integration with **SQL databases** and version control using **Git**.
 
-- Collaborated with **cross-functional teams**, participating in requirement analysis, development, and iterative delivery of features.
+- Collaboration with the development team, following **Agile** development practices.
 
-- Applied software engineering best practices, emphasizing **clean code, maintainability, and scalable system design** in a professional environment.
+- Use of **Agentic AI** with Skills for programming, such as **Claude Code** and **Cursor**.
+
+- Use of the **SDD (Spec-Driven Development)** methodology.

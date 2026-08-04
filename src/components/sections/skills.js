@@ -1,40 +1,75 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// --- IMPORTANDO ÍCONES (Baseado no seu currículo PDF) ---
-import { FaJava, FaNodeJs, FaPython, FaReact, FaDocker, FaGitAlt, FaHtml5, FaCss3Alt, FaAngular } from 'react-icons/fa';
-import { SiSpringboot, SiHibernate, SiExpress, SiDjango, SiFlask, SiPostgresql, SiMysql, SiMongodb, SiFirebase, SiTypescript, SiJavascript, SiCplusplus, SiPandas } from 'react-icons/si';
+// --- IMPORTANDO ÍCONES (Baseado no currículo atualizado) ---
+import { FaJava, FaNodeJs, FaPython, FaReact, FaDocker, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from 'react-icons/fa';
+import {
+  SiSpringboot,
+  SiHibernate,
+  SiExpress,
+  SiNestjs,
+  SiDjango,
+  SiFlask,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiBootstrap,
+  SiTypescript,
+  SiJavascript,
+  SiCplusplus,
+  SiAnthropic,
+  SiGooglegemini,
+  SiN8N,
+  SiSwagger,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiFirebase,
+  SiPandas,
+  SiNumpy,
+} from 'react-icons/si';
 
-// --- DADOS DAS SKILLS (Extraídos do CV) ---
+// --- DADOS DAS SKILLS (Extraídos do currículo atualizado) ---
 const SKILLS_DATA = [
   // Backend & Languages
   { name: 'Java', icon: <FaJava /> },
   { name: 'Spring Boot', icon: <SiSpringboot /> },
   { name: 'Hibernate', icon: <SiHibernate /> },
   { name: 'Node.js', icon: <FaNodeJs /> },
+  { name: 'NestJS', icon: <SiNestjs /> },
   { name: 'Express.js', icon: <SiExpress /> },
   { name: 'Python', icon: <FaPython /> },
-  { name: 'Django', icon: <SiDjango /> },
+  { name: 'Django Ninja', icon: <SiDjango /> },
   { name: 'Flask', icon: <SiFlask /> },
-  
+
   // Frontend
   { name: 'React', icon: <FaReact /> },
+  { name: 'Next.js', icon: <SiNextdotjs /> },
   { name: 'TypeScript', icon: <SiTypescript /> },
-  { name: 'Angular', icon: <FaAngular /> },
+  { name: 'JavaScript', icon: <SiJavascript /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+  { name: 'Bootstrap', icon: <SiBootstrap /> },
   { name: 'HTML5', icon: <FaHtml5 /> },
   { name: 'CSS3', icon: <FaCss3Alt /> },
-  { name: 'JavaScript', icon: <SiJavascript /> },
-  
+
+  // AI & Automation
+  { name: 'Anthropic Claude', icon: <SiAnthropic /> },
+  { name: 'Google Gemini', icon: <SiGooglegemini /> },
+  { name: 'n8n', icon: <SiN8N /> },
+  { name: 'Swagger / OpenAPI', icon: <SiSwagger /> },
+
   // Data & DB
   { name: 'PostgreSQL', icon: <SiPostgresql /> },
   { name: 'MySQL', icon: <SiMysql /> },
   { name: 'MongoDB', icon: <SiMongodb /> },
   { name: 'Firebase', icon: <SiFirebase /> },
   { name: 'Pandas', icon: <SiPandas /> },
+  { name: 'NumPy', icon: <SiNumpy /> },
+  { name: 'C++', icon: <SiCplusplus /> },
 
   // Tools & DevOps
   { name: 'Docker', icon: <FaDocker /> },
   { name: 'Git', icon: <FaGitAlt /> },
+  { name: 'GitHub', icon: <FaGithub /> },
 ];
 
 // --- ANIMAÇÃO ---

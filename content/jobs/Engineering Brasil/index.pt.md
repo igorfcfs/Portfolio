@@ -1,6 +1,6 @@
 ---
 date: '2026-04-13'
-title: 'Estagiário em Desenvolvimento Java'
+title: 'Estagiário em Desenvolvimento Full Stack'
 company: 'Engineering Brasil'
 location: 'Brasil'
 range: 'Abr 2026 - Presente'
@@ -9,14 +9,16 @@ lang: 'pt'
 logo: 'logo.png'
 ---
 
-- Contribuí no desenvolvimento e manutenção de **aplicações corporativas** utilizando **Java**, dando suporte a sistemas internos e soluções para clientes.
+- Desenvolvimento e manutenção de **aplicações full stack** utilizando **Java, Python, React** e outras stacks, em sistemas internos e soluções para clientes.
 
-- Projetei e implementei **APIs RESTful** com **Spring Boot**, seguindo boas práticas de arquitetura, validação e regras de negócio.
+- Implementação de novas **funcionalidades** e correção de **bugs** em aplicações em produção.
 
-- Trabalhei com **bancos de dados relacionais**, focando em modelagem de dados, otimização de consultas e garantia de integridade.
+- Suporte na criação e consumo de **APIs REST**.
 
-- Auxiliei na construção e manutenção de **serviços backend**, melhorando desempenho, confiabilidade e escalabilidade dos sistemas.
+- Integração com **bancos de dados SQL** e uso de controle de versão com **Git**.
 
-- Colaborei com **times multidisciplinares**, participando do levantamento de requisitos e da entrega contínua de funcionalidades.
+- Colaboração com o time de desenvolvimento, seguindo práticas de metodologia **Ágil**.
 
-- Apliquei boas práticas de engenharia de software, com foco em **código limpo, manutenibilidade e escalabilidade** em ambiente profissional.
+- Uso de **IA Agêntica** com Skills para programação, como **Claude Code** e **Cursor**.
+
+- Uso da metodologia **SDD (Spec-Driven Development)**.

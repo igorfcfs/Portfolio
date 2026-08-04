@@ -1,6 +1,6 @@
 ---
 date: '2026-04-13'
-title: 'Pasante de Desarrollo Java'
+title: 'Pasante de Desarrollo Full Stack'
 company: 'Engineering Brasil'
 location: 'Brasil'
 range: 'Abr 2026 - Presente'
@@ -9,14 +9,16 @@ lang: 'es'
 logo: 'logo.png'
 ---
 
-- Contribuí en el desarrollo y mantenimiento de **aplicaciones empresariales** utilizando **Java**, dando soporte a sistemas internos y soluciones para clientes.
+- Desarrollo y mantenimiento de **aplicaciones full stack** utilizando **Java, Python, React** y otras tecnologías, en sistemas internos y soluciones para clientes.
 
-- Diseñé e implementé **APIs RESTful** con **Spring Boot**, siguiendo buenas prácticas de arquitectura, validación y reglas de negocio.
+- Implementación de nuevas **funcionalidades** y corrección de **errores (bug fixing)** en aplicaciones en producción.
 
-- Trabajé con **bases de datos relacionales**, enfocándome en el modelado de datos, la optimización de consultas y la garantía de integridad.
+- Soporte en la creación y consumo de **APIs REST**.
 
-- Colaboré en la construcción y mantenimiento de **servicios backend**, mejorando el rendimiento, la confiabilidad y la escalabilidad del sistema.
+- Integración con **bases de datos SQL** y control de versiones con **Git**.
 
-- Colaboré con **equipos multidisciplinarios**, participando en el análisis de requisitos, el desarrollo y la entrega iterativa de funcionalidades.
+- Colaboración con el equipo de desarrollo, siguiendo prácticas de metodología **Ágil**.
 
-- Apliqué buenas prácticas de ingeniería de software, con énfasis en **código limpio, mantenibilidad y diseño de sistemas escalables** en un entorno profesional.
+- Uso de **IA Agéntica** con Skills para programación, como **Claude Code** y **Cursor**.
+
+- Uso de la metodología **SDD (Spec-Driven Development)**.

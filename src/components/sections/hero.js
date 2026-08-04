@@ -122,7 +122,7 @@ const Hero = () => {
   );
   const three = (
     <h3 className="big-heading">
-      <FormattedMessage id="hero_subtitle" defaultMessage="Junior Full-Stack Software Developer." />
+      <FormattedMessage id="hero_subtitle" defaultMessage="Full Stack Developer & AI Engineer." />
     </h3>
   );
 
@@ -134,8 +134,8 @@ const Hero = () => {
           id="hero_description"
           values={{
             java: <strong>Java (Spring Boot)</strong>,
-            node: <strong>JavaScript/TypeScript (Node.js + Express)</strong>,
-            python: <strong>Python (Django)</strong>,
+            node: <strong>Node.js (NestJS)</strong>,
+            python: <strong>Python (Django Ninja)</strong>,
             postgres: <strong>PostgreSQL</strong>,
             docker: <strong>Docker</strong>,
             swagger: <strong>Swagger/OpenAPI</strong>,

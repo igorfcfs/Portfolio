@@ -1,6 +1,6 @@
 ---
 date: '2023-12-01'
-end: '2026-12-01'
+end: '2025-12-01'
 title: 'Ensino Médio Técnico em Desenvolvimento de Sistemas'
 school: 'ETEC Taboão da Serra'
 cover: './etects.jpg'

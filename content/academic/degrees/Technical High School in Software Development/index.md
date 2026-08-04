@@ -1,6 +1,6 @@
 ---
 date: '2023-12-01'
-end: '2026-12-01'
+end: '2025-12-01'
 title: 'Technical High School in Software Development'
 school: 'ETEC Taboão da Serra'
 cover: './etects.jpg'

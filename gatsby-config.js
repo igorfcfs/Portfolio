@@ -5,7 +5,7 @@ module.exports = {
   
   siteMetadata: {
     title: 'Igor Fernando Casita',
-    description: 'Igor Fernando Casita is a software engineer...',
+    description: 'Igor Fernando Casita is a Full Stack Developer & AI Engineer building AI-powered, web, and mobile applications.',
     siteUrl: 'https://igorfcfs.github.io/Portfolio',
     image: '/og.png',
     twitterUsername: '@igorfcfs',

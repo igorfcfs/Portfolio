@@ -122,13 +122,13 @@ const About = () => {
 
   const skills = [
     'Java (Spring Boot)',
-    'Node.js & Express',
-    'REST APIs',
-    'PostgreSQL & Docker',
-    'JWT & Spring Security',
+    'Node.js (NestJS)',
+    'Python (Django Ninja)',
     'React (DOM & Native)',
-    'Swagger / OpenAPI',
-    'Python (Automation)',
+    'REST APIs',
+    'AI Agents & LLMs',
+    'Workflow Automation (n8n)',
+    'SQL & Docker',
   ];
 
   return (
@@ -146,7 +146,7 @@ const About = () => {
 
             <p>
               <FormattedMessage id="about_p2" />{' '}
-              <a href="https://etects.cps.sp.gov.br/">
+              <a href="https://www.engdb.com.br/">
                 <FormattedMessage id="about_p2_link" />
               </a>.{' '}
               <FormattedMessage id="about_p2_end" />
