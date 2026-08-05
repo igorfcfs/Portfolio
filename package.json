@@ -13,7 +13,7 @@
   "license": "MIT",
   "browserslist": "> 0.25%, not dead",
   "engines": {
-    "node": ">=24.18.0"
+    "node": "24.x"
   },
   "scripts": {
     "build": "gatsby build",
@@ -46,7 +46,6 @@
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-intl": "^5.10.0",
     "gatsby-plugin-manifest": "^5.16.0",
-    "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-offline": "^6.16.0",
     "gatsby-plugin-react-helmet": "^6.16.0",
     "gatsby-plugin-robots-txt": "^1.8.0",

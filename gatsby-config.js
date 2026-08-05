@@ -1,8 +1,17 @@
 const config = require('./src/config');
 
+// The AI chatbot depends on the /api/chat serverless function, which only
+// exists on the Vercel deploy. Enable it on Vercel and in local development;
+// keep it off for the static GitHub Pages production build (`npm run deploy`).
+if (process.env.VERCEL || process.env.NODE_ENV === 'development') {
+  process.env.GATSBY_ENABLE_AI = 'true';
+}
+
 module.exports = {
-  pathPrefix: '/Portfolio', 
-  
+  // GitHub Pages serves the site under /Portfolio; Vercel serves it at the
+  // domain root. Only apply the prefix off-Vercel so assets resolve correctly.
+  pathPrefix: process.env.VERCEL ? '/' : '/Portfolio',
+
   siteMetadata: {
     title: 'Igor Fernando Casita',
     description: 'Igor Fernando Casita is a Full Stack Developer & AI Engineer building AI-powered, web, and mobile applications.',

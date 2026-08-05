@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"c:/TEMP/Portfolio/netlify/functions\")"
+    ],
+    "additionalDirectories": [
+      "c:\\TEMP\\Portfolio\\netlify"
+    ]
+  }
+}

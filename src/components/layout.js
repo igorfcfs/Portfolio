@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
 import { GlobalStyle, theme } from '@styles';
 import InteractiveBackground from './sections/interactive-background';
+import ChatBot from './chat-bot';
 
 const StyledContent = styled.div`
   display: flex;
@@ -84,6 +85,9 @@ const Layout = ({ children, location }) => {
                 {children}
                 <Footer />
               </div>
+
+              {/* Only rendered where the /api/chat function exists (Vercel + dev). */}
+              {process.env.GATSBY_ENABLE_AI === 'true' && <ChatBot />}
             </StyledContent>
           )}
         </ThemeProvider>

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import Globe from '../Globe'; // Verifique se o caminho está correto (Globe.js ou globe.js)
+import Globe from '../globe';
 import { FormattedMessage, useIntl } from 'gatsby-plugin-intl';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
